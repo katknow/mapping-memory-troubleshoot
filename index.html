@@ -1,270 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Stratford Memory Map</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asul">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Auto-Modal-Popup.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Icon-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 <html lang="en">
     <head>
-        <!--jquery js-->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- leaflet files -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-            <style>
-                #myMap {position: absolute; top: 0; bottom: 0; left: 0; right:0;}
-          </style>
-    
-        <!--jQuery UI files-->
-            <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-        <!--jQuery UI Touch js, required for touchscreen use-->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-            <script src="js/SliderControl.js"></script>
-            <link rel="stylesheet" href= "textbox.css" />  
-	    <link rel="stylesheet" href="leaflet-sidebar.css" />
-	  <script src="js/leaflet-sidebar.js"></script>
-	  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-	  <link rel="stylesheet" type="text/css" href="L.Control.ZoomBar.css"/>
-	  <script type="text/javascript" src="js/L.Control.ZoomBar.js"></script>
-    <style>
-                .lorem {
-            font-style: normal;
-            color: #000000;
-        }
+<!--jquery js-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- leaflet files -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<style>
+html, body, #container {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+body {
+    overflow: auto;
+}
+footer{
+  position:static;
+ }
+body {
+  padding-top: 8px;
+}
+.navbar {
+  min-height: 8px;
+}
+    #myMap {
+        position: relative;
+        height: 100%;
+        width: auto;
+       }
+</style>
+</head>
 
-        html, body, #map {
-            height: 100%;
-            font: 14pt "Helvetica Neue", Arial, Helvetica, sans-serif;
-        }
-
-        body {
-            padding: 0;
-            margin: 0;
-        }
-
-    </style>
-
-<title>Automatic Popup</title>
-    <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <!--Stylesheets-->
-    <link rel="stylesheet" href="style.css">
-        </head>
-   <body>
-    <div class="popup">
-        <button id="close">&times;</button>
-        <h2>This Is The Title</h2>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita distinctio fugiat alias iure qui, commodi minima magni ullam aliquam dignissimos?
-        </p>
-        <a href="#">Let's Go</a>
-    </div>
-    <!--Script-->
-    <script src="script.js"></script>
-    
-        <div id="myMap"</div>
-	<div id="sidebar" class="leaflet-sidebar collapsed">
-        <!-- Nav tabs -->
-        <div class="leaflet-sidebar-tabs">
-            <ul role="tablist">
-                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-                <li><a href="#profile" role="tab"><i class="fa fa-bookmark"></i></a></li>
-                <li><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
-            </ul>
-        <!-- add more tab panes here, copy / paste -->   
-        </div>
-
-        <!-- Tab panes -->
-        <div class="leaflet-sidebar-content">
-            <div class="leaflet-sidebar-pane" id="home">
-                <h1 class="leaflet-sidebar-header">
-                    Covid's Closing Door 
-                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
-                </h1>
-
-                
-
-                <p class="lorem">During the Michigan’s lockdown responses to COVID-19 pandemic, beginning on March 16, 2020 Lansing foodservice workers and business owners have faced many challenges, including: health concerns, shutdowns, restricted hours, occupancy limits, poor delivery infrastructure, economic slowdowns, supply-chain issues, and customer hesitancy. Dozens of businesses in the Greater Lansing area have closed permanently or temporarily during the pandemic (Kaminski and Stocken 2020), as Michigan’s foodservice industry faced record financial losses during the months-long dine-in ban and capacity restrictions (Couch and Greco 2020).</p>
-
-                <p class="lorem">Indeed, a survey of Michigan restaurants in April 2020 indicated that nearly four-percent would have to permanently close within the month. Hardest hit were businesses without large savings (Couch and Greco 2020) or established delivery or drive-through services (Couch 2020). Occasionally community members organized support for local businesses, but these were rare, feel good stories in a narrative defined by sale deficits of 50 - 75% where pandemic restrictions were exacerbated by mass unemployment and significant changes in work routines (Couch 2020; Greco 2020).</p>
-
-                <p class="lorem">This map includes Lansing area 15 restaurants, bars, and coffee shops that closed permanently during the pandemic, from March 2020 - August 2021. While each business faced unique circumstances that prompted their closings, all were connected to the broader narrative of the impacts of the pandemic on the foodservice industry in Michigan.</p>
-
-                <p class="lorem">Use the slider in the top right corner of the map to visualize when each business closed, some went out of business in the first weeks of the lockdown, while others stuck it out for months. Click on any of the 15 businesses to read about their specific circumstances derived from owner interviews and official social media posts. In this narrative, the voices of non-owner foodservice workers are missing and was not something broadly accessible at this time.</p>
-            </div>
-
-            <div class="leaflet-sidebar-pane" id="profile">
-                <h1 class="leaflet-sidebar-header">References<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-		  <br>
-		  <li>Couch, Graham (2020) Inside the Lansing-area restaurant industry's fight to survive. <i>Lansing State Journal</i>, July 13, 2020. <a href="https://www.lansingstatejournal.com/story/sports/columnists/graham-couch/2020/05/07/lansing-area-restaurants-fight-to-survive-couch-column/3069370001/" target="_blank">Source</a> </li>
-		  <li>Greco, Rachel (2020) Coronavirus stripped Groovy Donuts of its momentum. Then the community stepped in. <i>Lansing State Journal</i>, May 12, 2020 <a href="https://www.lansingstatejournal.com/story/news/local/2020/05/13/coronavirus-stripped-groovy-donuts-its-momentum-then-community-stepped-in-east-lansing-williamston/3076751001/" target="_blank">Source</a> </li>
-		  <li>Greco, Rachel and Graham Couch (2020) Restaurants that have closed - or are on the edge: For some in Lansing area, COVID-19 was too much. <i>Lansing State Journal</i>, May 28, 2020 <a href="https://www.lansingstatejournal.com/story/news/local/2020/05/27/restaurants-that-have-closed-permanently-in-lansing-mid-michigan-covid-19/5231525002/" target="_blank">Source</a></li>
-		  <li>Kaminski, Kyle and Shauna Stocken (2020) At least 70 businesses gone or paused. <i>City Pulse</i>, May 28, 2020 <a href="https://lansingcitypulse.com/stories/at-least-70-businesses-gone-or-paused,14931" target="_blank">Source</a></li>
-            </div>
-
-            <div class="leaflet-sidebar-pane" id="messages">
-                <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-		    <p><b><a class="one" href="mailto:fadat85580@nefacility.com" target="_blank">Contact Us!</a></b></p>
-            </div>
-
-            <div class="leaflet-sidebar-pane" id="settings">
-                <h1 class="leaflet-sidebar-header">Settings<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+<body style="color: rgb(39, 34, 38);min-height: 100%;">
+    <div class="modal fade" role="dialog" tabindex="-1" id="contactModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Welcome to the Stratford-upon-Avon Memory Map!</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <p>Welcome to the Stratford-upon-Avon Memory Map, a project created as part of the 2021-2022 Cultural Heritage Informatics Fellowship. This map explores the various ways 19th century guidebooks described cultural heritage sites related to Shakespeare in his hometown. Click the swan icon for each location to view the visualization associated with that site. Be sure to also zoom out to check out Anne Hathaway's Cottage and Mary Arden's Farm!<br></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="background: rgb(39, 34, 38);">
+                    <div class="container"><a class="navbar-brand" href="index.html" style="color: rgb(233, 200, 121);">Stratford-upon-Avon Memory Map</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="background: rgb(233, 200, 121);"><i class="fa fa-bars"></i></button>
+                        <div class="collapse navbar-collapse" id="navbarResponsive">
+                            <ul class="navbar-nav ms-auto text-uppercase">
+                                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="guidebooks.html">Guidebooks</a></li>
+                                <li class="nav-item"><a class="nav-link" href="sites.html">sites</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="min-width: 100%;max-width: 100%;height: 100%;width: 100%;padding: 0px;min-height: 100%;margin: 0px;max-height: 100%;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 45px;padding-right: 1px;padding-bottom: 1px;padding-left: 1px;"><div id="myMap">ERROR.</div>
+<script >
+    // Create map (map1) inside div with #myMap ID; set the view
+    var map1 = L.map('myMap').setView([ 52.190727408836366,-1.7077324596443273], 16);
 
-    <div id="myMap" class="sidebar-map"></div> 
-	   
-        <script>
-            var map1 = L.map ('myMap', {
-		    	minZoom: 7.5,
-                        maxZoom: 18,
-		    zoomControl: false}).setView([43.59743364839015, -84.75832298140293], 7.5);
-           
-            L.tileLayer('https://api.mapbox.com/styles/v1/jacob-cara-e/clacpjey6001d15plh9fpo29x/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamFjb2ItY2FyYS1lIiwiYSI6ImNsYWNvdG1ybzBjaTgzcHBlczU3aTI1MHQifQ.H9XbnFnyjJeYBfQxiDL4-Q', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-           }).addTo(map1);
-		        map1.attributionControl.addAttribution('CHI Fellows 2022-2023, <a href="https://chi.anthropology.msu.edu/", class="your_class">CHI MSU 2022</a>');
-	  
-           
-                var dataset1 = [
-     
-     {
-         type: 'Feature',
-         geometry: {
-             type: 'Point',
-             coordinates: [-86.21807394, 43.06101798]
-         },
-         properties: {
-             title: 'Grand Haven March',
-             description: '<img class="resize center" src="https://bloximages.newyork1.vip.townnews.com/grandhaventribune.com/content/tncms/assets/v3/editorial/d/67/d67c21e0-985b-518d-b8f0-4dbaf9415fc9/62bf5c575e219.image.jpg"> <br> <b>Location: Grand Haven</b> <br> On July 1, about 40 community members gathered in Grand Haven, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.grandhaventribune.com/news/local/protestors-react-to-supreme-court-decision-with-grand-haven-march/article_c62ae702-0624-5d17-bab9-2f0332bec8de.html">here</a>',
-             time: '2022/07',
-             icon: {
-                 iconUrl: 'html/restauranticon.png',
-                 iconSize: [25, 41],
-                 iconAnchor: [3, 35],
-                 popupAnchor: [0, -41],
-                 className: 'dot',
-                         }
-         }
-     },
- 
-     {
-         type: 'Feature',
-         geometry: {
-             type: 'Point',
-             coordinates: [-85.52746686, 41.92310502]
-         },
-         properties: {
-             title: 'Centreville March',
-             description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/05/NSTJ/716df7dc-0f1d-4712-9c4d-bdef02e6e5d8-IMG_6457_copy.jpg"> <br> <b>Location: Centreville</b> <br> On July 2, Three Rivers Pride and the St. Joseph County Democratic Party organized a rally in Centreville, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.sturgisjournal.com/story/news/2022/07/06/news-roe-v-wade-protest/7810757001/">here</a>!',
-             time: '2022/07',
-     icon: {
-                             iconUrl: 'html/restauranticon.png',
-                             iconSize: [25, 41],
-                             iconAnchor: [3, 35],
-                             popupAnchor: [0, -41],
-                             className: 'dot',
-                         }
- 
- 
-         }
-     },
-             
-     {
-         type: 'Feature',
-         geometry: {
-             type: 'Point',
-             coordinates: [-84.55321651, 42.73432382]
-         },
-         properties: {
-             title: 'Saline',
-             description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/04/PLSJ/cbf85d18-b274-44da-93f0-1662b83c82ba-20220704_152001156_iOS.jpg"> <br> <b>Location: Lansing</b> <br> On July 4, Lansing community members organized a rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling during the Independence Day Parade. Read more <a href="https://www.lansingstatejournal.com/story/news/local/2022/07/04/celebrations-protests-clash-july-4-lansing/7791867001/">here</a>!',
-             time: '2022/07',
-     icon: {
-                             iconUrl: 'html/restauranticon.png',
-                             iconSize: [25, 41],
-                             iconAnchor: [3, 35],
-                             popupAnchor: [0, -41],
-                             className: 'dot',
-                         }
-         }
-     },
-     
-     {
-         type: 'Feature',
-         geometry: {
-             type: 'Point',
-             coordinates: [-83.23976715, 42.77675836]
-         },
-         properties: {
-             title: 'Lansing March',
-             description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/289357148_2495151860621710_6136594774970141051_n.jpg"> <br> <b>Location: Lansing</b> <br> On July 4, Lansing Pro-Choice organized a rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.pharostribune.com/news/article_46fa2730-fa56-11ec-90d4-97739f9112f4.html">here</a>!',
-             time: '2022/07',
-             icon: {
-                             iconUrl: 'html/restauranticon.png',
-                             iconSize: [25, 41],
-                             iconAnchor: [3, 35],
-                             popupAnchor: [0, -41],
-                             className: 'dot',
-                         }
-         }
-     }
- 
- 
- ];
-            var optionsObject = {
-                onEachFeature: onEachFeature
-            };
-            function onEachFeature (feature, layer) {
-               var content = "<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 200px;' src=" + feature.properties.image + " /></div><div><h4>" + feature.properties.title + "</h4><p>" + feature.properties.time + "</p><p>" + feature.properties.description + "</p></div>";
-               layer.setIcon(L.icon(feature.properties.icon));
-                layer.bindPopup(content, {closeButton: true});
-            };
-            var group1 = L.geoJSON(dataset1, optionsObject);
-            var sliderControl1 = L.control.sliderControl( {
-    layer: group1, // REQUIRED
-    alwaysShowDate: true, // to make the date box below the slider persistent
-    showAllPopups: false, // to show all popups, instead of only one; same as the popup option "autoClose: false"
-    showPopups: false // to set it so, when a marker is generated by the slider, its popup doesn't automatically display
-});
-            
-    // Add the slider to the map
-map1.addControl(sliderControl1);
-
-// Initialize the slider
-sliderControl1.startSlider();
-                
-var sidebar = L.control.sidebar({ container: 'sidebar' })
-            .addTo(map1)
-            .open('home');
-		
- // add panels dynamically to the sidebar
-        sidebar
-            .addPanel({
-                id:   'js-api',
-                tab:  '<i class="fa fa-users"></i>',
-                title: 'JS API',
-                pane: '<p>The Javascript API allows to dynamically create or modify the panel state.<p/><p><button onclick="sidebar.enablePanel(\'mail\')">enable mails panel</button><button onclick="sidebar.disablePanel(\'mail\')">disable mails panel</button></p><p><button onclick="addUser()">add user</button></b>',
-            })
-                        
-            
-	var userid = 0
-        function addUser() {
-            sidebar.addPanel({
-                id:   'user' + userid++,
-                tab:  '<i class="fa fa-user"></i>',
-                title: 'User Profile ' + userid,
-                pane: '<p>user ipsum dolor sit amet</p>',
-            });
+    // Add tileLayer to map1
+    L.tileLayer('https://api.mapbox.com/styles/v1/katknow/cl2giordd000a14pbi5jr5w32/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoia2F0a25vdyIsImEiOiJjbDF6aGdyOW4wN3BuM2lxbzVuODhtd2M4In0.q05VF3pSrBV7bCrv1jKZyA', {
+        attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox </a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap </a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map </a></strong>" + '<a href="https://www.flaticon.com/free-icons/swan" title="swan icons">Swan icons created by Smashicons - Flaticon</a>',
+    }).addTo(map1);
+    
+    var dataset1 = [
+    {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.708011, 52.193905]
+        },
+        properties: {
+            title: "<a href='sites.html#TheBirthplace'>Shakespeare's Birthplace</a>",
+            image: '/assets/img/birthplacecloud.png',
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
         }
+    },
+        {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.707822, 52.187366]
+        },
+        properties: {
+            title: "<a href='sites.html#HolyTrinity'>Holy Trinity Church</a>",
+            image: '/assets/img/churchcloud.png',
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
+        }
+    },
+        {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.73239, 52.19146]
+        },
+        properties: {
+            title: "<a href='sites.html#AnneHathaways'>Anne Hathaway's Cottage</a>",
+            image: "/assets/img/cottagecloud.png",
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
+        }
+    },
+        {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.75911, 52.22183]
+        },
+        properties: {
+            title: "Mary Arden's Farm",
+            image: '/assets/img/comingsoon.jpg',
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
+        }
+    },
+        {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.70971, 52.18915]
+        },
+        properties: {
+            title: "<a href='sites.html#HallsCroft'>Hall's Croft</a>",
+            image: '/assets/img/comingsoon.jpg',
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
+        }
+    },
+         {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.7041250038246454, 52.19094998515627]
+        },
+        properties: {
+            title: "Shakespeare Memorial Theatre",
+            image: '/assets/img/comingsoon.jpg',
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
+        }
+    },
+        {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.7077324596443273, 52.190727408836366]
+        },
+        properties: {
+            title: "<a href='sites.html#GuildChapel'>Guild Chapel</a>",
+            image: '/assets/img/chapelcloud.png',
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
+        }
+    },
+        {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.7080545749885954, 52.19066207752727]
+        },
+        properties: {
+            title: "<a href='sites.html#School'>Shakespeare's School</a>",
+            image: '/assets/img/schoolcloud.png',
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
+        }
+    },
+        {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [-1.7076505070740144, 52.19078535761329]
+        },
+        properties: {
+            title: "<a href='sites.html#NewPlace'>New Place</a>",
+            image: '/assets/img/newplacecloud.png',
+            icon: {
+                iconUrl: '/assets/img/swan.png',
+                iconSize: [25, 41],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                        }
+        }
+    },
+];
+    var optionsObject = {
+    onEachFeature: onEachFeature
+};
+function onEachFeature (feature, layer) {
+     var content = "<div style='clear: both'></div><div style='float: center; padding: 5px; width: 300px'><img style='width: 100%;' src=" + feature.properties.image + " /></div><div><h4>" + feature.properties.title + "</h4><p>";
+    layer.setIcon(L.icon(feature.properties.icon));
+    layer.bindPopup(content, {closeButton: true});
+};
+   var group1 = L.geoJSON(dataset1, optionsObject);
+    group1.addTo(map1);
+</script>
+</div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Auto-Modal-Popup.js"></script>
+</body>
 
-var zoom_bar = new L.Control.ZoomBar({position: 'topright'}).addTo(map1);
-       
-
- 
-	   </script>
-	   
-
-		
-	</body>
 </html>
-	   
-

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Stratford Memory Map</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asul">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Auto-Modal-Popup.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Icon-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+<html lang="en">
+    <head>
+<!--jquery js-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- leaflet files -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<style>
+html, body, #container {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+body {
+    overflow: auto;
+}
+footer{
+  position:static;
+ }
+body {
+  padding-top: 8px;
+}
+.navbar {
+  min-height: 8px;
+}
+    #myMap {
+        position: relative;
+        height: 100%;
+        width: auto;
+       }
+</style>
+</head>
+
+<body style="background: rgb(233, 200, 121);">
+    <nav class="navbar navbar-light navbar-expand-md" style="padding-bottom: 0px;">
+        <div class="container-fluid"><a class="navbar-brand" href="#">Stratford-upon-Avon Memory Map</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="background: rgb(39, 34, 38);">
+                <div class="container"><a class="navbar-brand" href="index.html" style="color: rgb(233, 200, 121);">Stratford-upon-Avon Memory Map</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="background: rgb(233, 200, 121);"><i class="fa fa-bars"></i></button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto text-uppercase">
+                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="guidebooks.html" style="color: rgba(255, 255, 255, 0.55);">Guidebooks</a></li>
+                            <li class="nav-item"><a class="nav-link" href="sites.html">sites</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#guidebooks">Guidebooks</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#methodology">Methodology</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header style="background: url(&quot;assets/img/stratford.jpg&quot;) center / cover no-repeat;height: 250px;">
+        <div class="container">
+            <h1 style="text-align: center;padding-top: 50px;color: rgb(39, 34, 38);font-weight: bold;">SITES</h1>
+        </div>
+    </header>
+    <div class="container" style="margin-top: 25px;">
+        <h2 class="text-center" id="TheBirthplace">The Birthplace</h2>
+        <div class="row d-lg-flex">
+            <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid d-lg-flex" src="assets/img/birthplace.jpg" style="width: 750px;"></div>
+        </div>
+        <div class="row">
+            <div class="col text-center d-xl-flex justify-content-xl-center">
+                <p><br>Image by John Via&nbsp;<a href="https://www.flickr.com/photos/12859033@N00/1731186988" target="_blank">https://www.flickr.com/photos/12859033@N00/1731186988</a>,&nbsp;<br>This work is licensed under a&nbsp;<a href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.<br><br></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;margin-bottom: 25px;">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Guidebook</th>
+                        <th>Pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;border-bottom-color: var(--bs-table-bg);"><a href="https://www.google.com/books/edition/A_Guide_to_Stratford_upon_Avon/3_0pAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Stratford upon Avon</em></a><br>by Robert Bell Wheeler, 1814</td>
+                        <td style="border-bottom-width: 0px;">pg. 11 - 14&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrations_of_Stratford_upon_Avon_and/t7QtAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Illustrations of Stratford-upon-Avon and Its Vicinity</em></a><br>Published by J. Ward, 1828</td>
+                        <td style="border-bottom-width: 0px;">pg. 7 - 9</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Stratford_upon_Avon_guide/qJ0NAAAAQAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Stratford-upon-Avon Guide</em></a><br>Published by Whittaker &amp; Co., 1837</td>
+                        <td>pg. 13 - 14</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Homes_of_Shakspere/MK8NAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Homes of Shakespeare</em></a><br>By F.W. Fairholt, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 2 - 11</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrated_Guide_to_Stratford_on_Avon/gpZuCSY5xgoC?hl=en&amp;gbpv=0" target="_blank"><em>Illustrated Guide to Stratford-on-Avon</em></a><br>By George May, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 19 - 21</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Pilgrimage_to_Stratford_upon_Avon/ZnS4vrUoMq8C?hl=en&amp;gbpv=0" target="_blank"><em>A Pilgrimage to Stratford-upon-Avon: The Birthplace of Shakespeare</em></a><br>By Charles Vaughan Grinfield, 1850</td>
+                        <td style="border-bottom-width: 0px;">pg. 22 - 28</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Handbook_for_Visitors_to_Stratford_upon/oQVU_xN81_gC?hl=en&amp;gbpv=0" target="_blank"><em>Handbook for Visitors to Stratford-upon-Avon</em></a><br>By Edward Adams, 1860</td>
+                        <td style="border-bottom-width: 0px;">pg. 9 - 12</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Remarks_on_Shakespeare_his_birthplace/7kILQvNgwSMC?hl=en&amp;gbpv=0" target="_blank"><em>Remarks on Shakespeare, his Birthplace</em></a><br>By Charles Roach Smith, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 6, 31</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Shakespeare_s_Home/n8MjAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Shakespeare's Home</em></a><br>By Washington Irving and F.W. Fairholt, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 4 - 15</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Warwick, Kenilworth, Stratford-on-Avon, Coventry, and the </em></a><br><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>Various Places of Interest in the Neighbourhood</em></a><br>Published by Henry T. Cooke and Son, 1879</td>
+                        <td style="border-bottom-width: 0px;">pg. 123&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespeare_Memorial_Buildings_Strat/NqHsme8vlHIC?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespeare Memorial Buildings, Stratford-upon-Avon</em></a><br>Published by The Herald Office, 1879</td>
+                        <td style="border-bottom-width: 0px;">pg. 21 - 22, 30 - 31</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespearean Guide to Stratford-upon-Avon: With Chapters </em></a><br><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>on Warwick, Kenilworth, and 'the Shakespeare Country' Generally</em></a><br>By Henry Snowden Ward and Catherine Weed Barnes Ward, 1897</td>
+                        <td style="border-bottom-width: 0px;">pg. 32 - 33; 52 - 60</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;">
+        <h2 class="text-center" id="HolyTrinity">Holy Trinity Church</h2>
+        <div class="row d-lg-flex">
+            <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid d-lg-flex" src="assets/img/holytrinity.jpg" style="width: 750px;"></div>
+        </div>
+        <div class="row">
+            <div class="col text-center d-xl-flex justify-content-xl-center">
+                <p>Image by David Dixon Via&nbsp;<a href="https://www.geograph.org.uk/photo/2549765" target="_blank">https://www.geograph.org.uk/photo/2549765</a>,&nbsp;<br>This work is licensed under a&nbsp;<a href="https://creativecommons.org/licenses/by-sa/2.0/">Creative Commons Attribution-ShareAlike 2.0 Generic License</a>.<br></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;margin-bottom: 25px;">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Guidebook</th>
+                        <th>Pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;border-bottom-color: var(--bs-table-bg);"><a href="https://www.google.com/books/edition/A_Guide_to_Stratford_upon_Avon/3_0pAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Stratford upon Avon</em></a><br>by Robert Bell Wheeler, 1814</td>
+                        <td style="border-bottom-width: 0px;">pg. 69 - 94&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrations_of_Stratford_upon_Avon_and/t7QtAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Illustrations of Stratford-upon-Avon and Its Vicinity</em></a><br>Published by J. Ward, 1828</td>
+                        <td style="border-bottom-width: 0px;">pg. 27 - 32</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Stratford_upon_Avon_guide/qJ0NAAAAQAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Stratford-upon-Avon Guide</em></a><br>Published by Whittaker &amp; Co., 1837</td>
+                        <td>pg. 31 - 37</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Homes_of_Shakspere/MK8NAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Homes of Shakespeare</em></a><br>By F.W. Fairholt, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 28 - 32</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrated_Guide_to_Stratford_on_Avon/gpZuCSY5xgoC?hl=en&amp;gbpv=0" target="_blank"><em>Illustrated Guide to Stratford-on-Avon</em></a><br>By George May, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 28 - 40</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Pilgrimage_to_Stratford_upon_Avon/ZnS4vrUoMq8C?hl=en&amp;gbpv=0" target="_blank"><em>A Pilgrimage to Stratford-upon-Avon: The Birthplace of Shakespeare</em></a><br>By Charles Vaughan Grinfield, 1850</td>
+                        <td style="border-bottom-width: 0px;">pg. 40 - 47</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Handbook_for_Visitors_to_Stratford_upon/oQVU_xN81_gC?hl=en&amp;gbpv=0" target="_blank"><em>Handbook for Visitors to Stratford-upon-Avon</em></a><br>By Edward Adams, 1860</td>
+                        <td style="border-bottom-width: 0px;">pg. 27 - 33</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Remarks_on_Shakespeare_his_birthplace/7kILQvNgwSMC?hl=en&amp;gbpv=0" target="_blank"><em>Remarks on Shakespeare, his Birthplace</em></a><br>By Charles Roach Smith, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 8, 30 - 31</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Shakespeare_s_Home/n8MjAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Shakespeare's Home</em></a><br>By Washington Irving and F.W. Fairholt, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 43 - 51, 68 - 74</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Warwick, Kenilworth, Stratford-on-Avon, Coventry, and the </em></a><br><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>Various Places of Interest in the Neighbourhood</em></a><br>Published by Henry T. Cooke and Son, 1879</td>
+                        <td style="border-bottom-width: 0px;">pg. 124 -125&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespeare_Memorial_Buildings_Strat/NqHsme8vlHIC?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespeare Memorial Buildings, Stratford-upon-Avon</em></a><br>Published by The Herald Office, 1879</td>
+                        <td style="border-bottom-width: 0px;">pg. 24 - 26</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespearean Guide to Stratford-upon-Avon: With Chapters </em></a><br><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>on Warwick, Kenilworth, and 'the Shakespeare Country' Generally</em></a><br>By Henry Snowden Ward and Catherine Weed Barnes Ward, 1897</td>
+                        <td style="border-bottom-width: 0px;">pg. 42 - 43, 65 - 75</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;">
+        <h2 class="text-center" id="AnneHathaways">Anne Hathaway's Cottage</h2>
+        <div class="row d-lg-flex">
+            <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid d-lg-flex" src="assets/img/hathaway_cottage.jpg" style="width: 750px;"></div>
+        </div>
+        <div class="row">
+            <div class="col text-center d-xl-flex justify-content-xl-center">
+                <p>Image by Tony Hisgett Via&nbsp;<a href="https://www.flickr.com/photos/hisgett/5662418953/" target="_blank">https://www.flickr.com/photos/hisgett/5662418953/</a>,&nbsp;<br>This work is licensed under a&nbsp;<a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.<br></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;margin-bottom: 25px;">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Guidebook</th>
+                        <th>Pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;border-bottom-color: var(--bs-table-bg);"><a href="https://www.google.com/books/edition/A_Guide_to_Stratford_upon_Avon/3_0pAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Stratford upon Avon</em></a><br>by Robert Bell Wheeler, 1814</td>
+                        <td style="border-bottom-width: 0px;">N/A&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrations_of_Stratford_upon_Avon_and/t7QtAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Illustrations of Stratford-upon-Avon and Its Vicinity</em></a><br>Published by J. Ward, 1828</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Stratford_upon_Avon_guide/qJ0NAAAAQAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Stratford-upon-Avon Guide</em></a><br>Published by Whittaker &amp; Co., 1837</td>
+                        <td>pg. 43</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Homes_of_Shakspere/MK8NAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Homes of Shakespeare</em></a><br>By F.W. Fairholt, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 20 -24</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrated_Guide_to_Stratford_on_Avon/gpZuCSY5xgoC?hl=en&amp;gbpv=0" target="_blank"><em>Illustrated Guide to Stratford-on-Avon</em></a><br>By George May, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 51 - 54</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Pilgrimage_to_Stratford_upon_Avon/ZnS4vrUoMq8C?hl=en&amp;gbpv=0" target="_blank"><em>A Pilgrimage to Stratford-upon-Avon: The Birthplace of Shakespeare</em></a><br>By Charles Vaughan Grinfield, 1850</td>
+                        <td style="border-bottom-width: 0px;">pg. 38 - 40</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Handbook_for_Visitors_to_Stratford_upon/oQVU_xN81_gC?hl=en&amp;gbpv=0" target="_blank"><em>Handbook for Visitors to Stratford-upon-Avon</em></a><br>By Edward Adams, 1860</td>
+                        <td style="border-bottom-width: 0px;">pg. 34 - 37</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Remarks_on_Shakespeare_his_birthplace/7kILQvNgwSMC?hl=en&amp;gbpv=0" target="_blank"><em>Remarks on Shakespeare, his Birthplace</em></a><br>By Charles Roach Smith, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 10 - 11</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Shakespeare_s_Home/n8MjAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Shakespeare's Home</em></a><br>By Washington Irving and F.W. Fairholt, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 35 - 39</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Warwick, Kenilworth, Stratford-on-Avon, Coventry, and the </em></a><br><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>Various Places of Interest in the Neighbourhood</em></a><br>Published by Henry T. Cooke and Son, 1879</td>
+                        <td style="border-bottom-width: 0px;">pg. 125&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespeare_Memorial_Buildings_Strat/NqHsme8vlHIC?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespeare Memorial Buildings, Stratford-upon-Avon</em></a><br>Published by The Herald Office, 1879</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespearean Guide to Stratford-upon-Avon: With Chapters </em></a><br><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>on Warwick, Kenilworth, and 'the Shakespeare Country' Generally</em></a><br>By Henry Snowden Ward and Catherine Weed Barnes Ward, 1897</td>
+                        <td style="border-bottom-width: 0px;">pg. 47 - 52</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;">
+        <h2 class="text-center" id="NewPlace">New Place</h2>
+        <div class="row d-lg-flex">
+            <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid d-lg-flex" src="assets/img/newplace.jpg" style="width: 750px;"></div>
+        </div>
+        <div class="row">
+            <div class="col text-center d-xl-flex justify-content-xl-center">
+                <p><br>Image by Elliot Brown Via&nbsp;<a href="https://www.flickr.com/photos/ell-r-brown/40494882911" target="_blank">https://www.flickr.com/photos/ell-r-brown/40494882911</a>,&nbsp;<br>This work is licensed under a&nbsp;<a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">Creative Commons Attribution-NonCommercial-ShareAlike 2.0 Generic License</a>.<br><br></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;margin-bottom: 25px;">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Guidebook</th>
+                        <th>Pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;border-bottom-color: var(--bs-table-bg);"><a href="https://www.google.com/books/edition/A_Guide_to_Stratford_upon_Avon/3_0pAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Stratford upon Avon</em></a><br>by Robert Bell Wheeler, 1814</td>
+                        <td style="border-bottom-width: 0px;">pg. 45 - 47&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrations_of_Stratford_upon_Avon_and/t7QtAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Illustrations of Stratford-upon-Avon and Its Vicinity</em></a><br>Published by J. Ward, 1828</td>
+                        <td style="border-bottom-width: 0px;">pg. 21 - 22</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Stratford_upon_Avon_guide/qJ0NAAAAQAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Stratford-upon-Avon Guide</em></a><br>Published by Whittaker &amp; Co., 1837</td>
+                        <td>pg. 23 - 25</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Homes_of_Shakspere/MK8NAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Homes of Shakespeare</em></a><br>By F.W. Fairholt, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 24 - 27</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrated_Guide_to_Stratford_on_Avon/gpZuCSY5xgoC?hl=en&amp;gbpv=0" target="_blank"><em>Illustrated Guide to Stratford-on-Avon</em></a><br>By George May, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 24 - 27</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Pilgrimage_to_Stratford_upon_Avon/ZnS4vrUoMq8C?hl=en&amp;gbpv=0" target="_blank"><em>A Pilgrimage to Stratford-upon-Avon: The Birthplace of Shakespeare</em></a><br>By Charles Vaughan Grinfield, 1850</td>
+                        <td style="border-bottom-width: 0px;">pg. 31 - 35</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Handbook_for_Visitors_to_Stratford_upon/oQVU_xN81_gC?hl=en&amp;gbpv=0" target="_blank"><em>Handbook for Visitors to Stratford-upon-Avon</em></a><br>By Edward Adams, 1860</td>
+                        <td style="border-bottom-width: 0px;">pg. 19 - 21</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Remarks_on_Shakespeare_his_birthplace/7kILQvNgwSMC?hl=en&amp;gbpv=0" target="_blank"><em>Remarks on Shakespeare, his Birthplace</em></a><br>By Charles Roach Smith, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 6 - 10</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Shakespeare_s_Home/n8MjAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Shakespeare's Home</em></a><br>By Washington Irving and F.W. Fairholt, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 39 - 42</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Warwick, Kenilworth, Stratford-on-Avon, Coventry, and the </em></a><br><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>Various Places of Interest in the Neighbourhood</em></a><br>Published by Henry T. Cooke and Son, 1879</td>
+                        <td style="border-bottom-width: 0px;">pg. 123 - 124&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespeare_Memorial_Buildings_Strat/NqHsme8vlHIC?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespeare Memorial Buildings, Stratford-upon-Avon</em></a><br>Published by The Herald Office, 1879</td>
+                        <td style="border-bottom-width: 0px;">pg. 3</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespearean Guide to Stratford-upon-Avon: With Chapters </em></a><br><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>on Warwick, Kenilworth, and 'the Shakespeare Country' Generally</em></a><br>By Henry Snowden Ward and Catherine Weed Barnes Ward, 1897</td>
+                        <td style="border-bottom-width: 0px;">pg. 40 - 41</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;">
+        <h2 class="text-center" id="HallsCroft">Hall's Croft</h2>
+        <p class="text-center">Due to it appearing in only one of the 19th century guidebooks used for this project, there is not enough data to create a visualization. However, as the project expands to include 20th and 21st century guidebooks Hall's Croft (which was purchased by the Shakespeare Birthplace Trust in 1949 and became a tourist attraction) will be feature on the map.</p>
+        <div class="row d-lg-flex">
+            <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid d-lg-flex" src="assets/img/hallscroft.jpg" style="width: 750px;"></div>
+        </div>
+        <div class="row">
+            <div class="col text-center d-xl-flex justify-content-xl-center">
+                <p><br>Image by Palickap Via&nbsp;<a href="https://commons.wikimedia.org/wiki/File:Stratford-upon-Avon,_Hall%27s_Croft.jpg" target="_blank">https://commons.wikimedia.org/wiki/File:Stratford-upon-Avon,_Hall%27s_Croft.jpg</a>,&nbsp;<br>This work is licensed under a&nbsp;<a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br><br></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;margin-bottom: 25px;">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Guidebook</th>
+                        <th>Pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;border-bottom-color: var(--bs-table-bg);"><a href="https://www.google.com/books/edition/A_Guide_to_Stratford_upon_Avon/3_0pAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Stratford upon Avon</em></a><br>by Robert Bell Wheeler, 1814</td>
+                        <td style="border-bottom-width: 0px;">N/A&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrations_of_Stratford_upon_Avon_and/t7QtAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Illustrations of Stratford-upon-Avon and Its Vicinity</em></a><br>Published by J. Ward, 1828</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Stratford_upon_Avon_guide/qJ0NAAAAQAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Stratford-upon-Avon Guide</em></a><br>Published by Whittaker &amp; Co., 1837</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Homes_of_Shakspere/MK8NAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Homes of Shakespeare</em></a><br>By F.W. Fairholt, 1847</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrated_Guide_to_Stratford_on_Avon/gpZuCSY5xgoC?hl=en&amp;gbpv=0" target="_blank"><em>Illustrated Guide to Stratford-on-Avon</em></a><br>By George May, 1847</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Pilgrimage_to_Stratford_upon_Avon/ZnS4vrUoMq8C?hl=en&amp;gbpv=0" target="_blank"><em>A Pilgrimage to Stratford-upon-Avon: The Birthplace of Shakespeare</em></a><br>By Charles Vaughan Grinfield, 1850</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Handbook_for_Visitors_to_Stratford_upon/oQVU_xN81_gC?hl=en&amp;gbpv=0" target="_blank"><em>Handbook for Visitors to Stratford-upon-Avon</em></a><br>By Edward Adams, 1860</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Remarks_on_Shakespeare_his_birthplace/7kILQvNgwSMC?hl=en&amp;gbpv=0" target="_blank"><em>Remarks on Shakespeare, his Birthplace</em></a><br>By Charles Roach Smith, 1877</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Shakespeare_s_Home/n8MjAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Shakespeare's Home</em></a><br>By Washington Irving and F.W. Fairholt, 1877</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Warwick, Kenilworth, Stratford-on-Avon, Coventry, and the </em></a><br><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>Various Places of Interest in the Neighbourhood</em></a><br>Published by Henry T. Cooke and Son, 1879</td>
+                        <td style="border-bottom-width: 0px;">N/A&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespeare_Memorial_Buildings_Strat/NqHsme8vlHIC?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespeare Memorial Buildings, Stratford-upon-Avon</em></a><br>Published by The Herald Office, 1879</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespearean Guide to Stratford-upon-Avon: With Chapters </em></a><br><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>on Warwick, Kenilworth, and 'the Shakespeare Country' Generally</em></a><br>By Henry Snowden Ward and Catherine Weed Barnes Ward, 1897</td>
+                        <td style="border-bottom-width: 0px;">pg. 42</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;">
+        <h2 class="text-center" id="GuildChapel">Guild Chapel</h2>
+        <div class="row d-lg-flex">
+            <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid d-lg-flex" src="assets/img/guildchapel.jpg" style="height: 750px;"></div>
+        </div>
+        <div class="row">
+            <div class="col text-center d-xl-flex justify-content-xl-center">
+                <p>Image by Billy Wilson Via&nbsp;<a href="https://www.flickr.com/photos/billy_wilson/49470396131" target="_blank">https://www.flickr.com/photos/billy_wilson/49470396131</a>,&nbsp;<br>This work is licensed under a&nbsp;<a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons Attribution-NonCommercial 2.0 Generic License</a>.<br></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;margin-bottom: 25px;">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Guidebook</th>
+                        <th>Pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;border-bottom-color: var(--bs-table-bg);"><a href="https://www.google.com/books/edition/A_Guide_to_Stratford_upon_Avon/3_0pAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Stratford upon Avon</em></a><br>by Robert Bell Wheeler, 1814</td>
+                        <td style="border-bottom-width: 0px;">pg. 48 - 67&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrations_of_Stratford_upon_Avon_and/t7QtAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Illustrations of Stratford-upon-Avon and Its Vicinity</em></a><br>Published by J. Ward, 1828</td>
+                        <td style="border-bottom-width: 0px;">pg. 23 - 24</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Stratford_upon_Avon_guide/qJ0NAAAAQAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Stratford-upon-Avon Guide</em></a><br>Published by Whittaker &amp; Co., 1837</td>
+                        <td>pg. 27 - 28</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Homes_of_Shakspere/MK8NAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Homes of Shakespeare</em></a><br>By F.W. Fairholt, 1847</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrated_Guide_to_Stratford_on_Avon/gpZuCSY5xgoC?hl=en&amp;gbpv=0" target="_blank"><em>Illustrated Guide to Stratford-on-Avon</em></a><br>By George May, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 43 - 48</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Pilgrimage_to_Stratford_upon_Avon/ZnS4vrUoMq8C?hl=en&amp;gbpv=0" target="_blank"><em>A Pilgrimage to Stratford-upon-Avon: The Birthplace of Shakespeare</em></a><br>By Charles Vaughan Grinfield, 1850</td>
+                        <td style="border-bottom-width: 0px;">pg. 35 - 36</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Handbook_for_Visitors_to_Stratford_upon/oQVU_xN81_gC?hl=en&amp;gbpv=0" target="_blank"><em>Handbook for Visitors to Stratford-upon-Avon</em></a><br>By Edward Adams, 1860</td>
+                        <td style="border-bottom-width: 0px;">pg. 22 - 23</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Remarks_on_Shakespeare_his_birthplace/7kILQvNgwSMC?hl=en&amp;gbpv=0" target="_blank"><em>Remarks on Shakespeare, his Birthplace</em></a><br>By Charles Roach Smith, 1877</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Shakespeare_s_Home/n8MjAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Shakespeare's Home</em></a><br>By Washington Irving and F.W. Fairholt, 1877</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Warwick, Kenilworth, Stratford-on-Avon, Coventry, and the </em></a><br><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>Various Places of Interest in the Neighbourhood</em></a><br>Published by Henry T. Cooke and Son, 1879</td>
+                        <td style="border-bottom-width: 0px;">N/A&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespeare_Memorial_Buildings_Strat/NqHsme8vlHIC?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespeare Memorial Buildings, Stratford-upon-Avon</em></a><br>Published by The Herald Office, 1879</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespearean Guide to Stratford-upon-Avon: With Chapters </em></a><br><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>on Warwick, Kenilworth, and 'the Shakespeare Country' Generally</em></a><br>By Henry Snowden Ward and Catherine Weed Barnes Ward, 1897</td>
+                        <td style="border-bottom-width: 0px;">pg. 60 - 61</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;">
+        <h2 class="text-center" id="School">Shakespeare's School</h2>
+        <div class="row d-lg-flex">
+            <div class="col d-lg-flex justify-content-lg-center"><img class="img-fluid d-lg-flex" src="assets/img/school.jpg" style="width: 750px;"></div>
+        </div>
+        <div class="row">
+            <div class="col text-center d-xl-flex justify-content-xl-center">
+                <p><br>Image by Elliot Brown Via&nbsp;<a href="https://www.flickr.com/photos/39415781@N06/8357852042" target="_blank">https://www.flickr.com/photos/39415781@N06/8357852042</a>,&nbsp;<br>This work is licensed under a&nbsp;<a href="http://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution 2.0 Generic License</a>.<br></p>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 25px;margin-bottom: 25px;">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Guidebook</th>
+                        <th>Pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;border-bottom-color: var(--bs-table-bg);"><a href="https://www.google.com/books/edition/A_Guide_to_Stratford_upon_Avon/3_0pAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Stratford upon Avon</em></a><br>by Robert Bell Wheeler, 1814</td>
+                        <td style="border-bottom-width: 0px;">pg. 68 - 69&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrations_of_Stratford_upon_Avon_and/t7QtAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Illustrations of Stratford-upon-Avon and Its Vicinity</em></a><br>Published by J. Ward, 1828</td>
+                        <td style="border-bottom-width: 0px;">pg. 25</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Stratford_upon_Avon_guide/qJ0NAAAAQAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Stratford-upon-Avon Guide</em></a><br>Published by Whittaker &amp; Co., 1837</td>
+                        <td>pg. 29</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Homes_of_Shakspere/MK8NAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Homes of Shakespeare</em></a><br>By F.W. Fairholt, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 11 - 14</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Illustrated_Guide_to_Stratford_on_Avon/gpZuCSY5xgoC?hl=en&amp;gbpv=0" target="_blank"><em>Illustrated Guide to Stratford-on-Avon</em></a><br>By George May, 1847</td>
+                        <td style="border-bottom-width: 0px;">pg. 21 - 23</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Pilgrimage_to_Stratford_upon_Avon/ZnS4vrUoMq8C?hl=en&amp;gbpv=0" target="_blank"><em>A Pilgrimage to Stratford-upon-Avon: The Birthplace of Shakespeare</em></a><br>By Charles Vaughan Grinfield, 1850</td>
+                        <td style="border-bottom-width: 0px;">pg. 36 - 37</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Handbook_for_Visitors_to_Stratford_upon/oQVU_xN81_gC?hl=en&amp;gbpv=0" target="_blank"><em>Handbook for Visitors to Stratford-upon-Avon</em></a><br>By Edward Adams, 1860</td>
+                        <td style="border-bottom-width: 0px;">pg. 24 - 26</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Remarks_on_Shakespeare_his_birthplace/7kILQvNgwSMC?hl=en&amp;gbpv=0" target="_blank"><em>Remarks on Shakespeare, his Birthplace</em></a><br>By Charles Roach Smith, 1877</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/Shakespeare_s_Home/n8MjAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>Shakespeare's Home</em></a><br>By Washington Irving and F.W. Fairholt, 1877</td>
+                        <td style="border-bottom-width: 0px;">pg. 15 - 17</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>A Guide to Warwick, Kenilworth, Stratford-on-Avon, Coventry, and the </em></a><br><a href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" target="_blank"><em>Various Places of Interest in the Neighbourhood</em></a><br>Published by Henry T. Cooke and Son, 1879</td>
+                        <td style="border-bottom-width: 0px;">N/A&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespeare_Memorial_Buildings_Strat/NqHsme8vlHIC?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespeare Memorial Buildings, Stratford-upon-Avon</em></a><br>Published by The Herald Office, 1879</td>
+                        <td style="border-bottom-width: 0px;">N/A</td>
+                    </tr>
+                    <tr style="border-bottom-width: .25px;border-bottom-color: rgba(255,255,255,0.55);">
+                        <td style="border-bottom-width: 0px;"><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>The Shakespearean Guide to Stratford-upon-Avon: With Chapters </em></a><br><a href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" target="_blank"><em>on Warwick, Kenilworth, and 'the Shakespeare Country' Generally</em></a><br>By Henry Snowden Ward and Catherine Weed Barnes Ward, 1897</td>
+                        <td style="border-bottom-width: 0px;">pg. 65 - 66</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer>
+        <footer class="text-center bg-dark" style="color: rgb(39, 34, 38);">
+            <div class="container text-white py-4 py-lg-5">
+                <ul class="list-inline">
+                    <li class="list-inline-item me-4"></li>
+                    <li class="list-inline-item me-4"><a href="mailto:knowle50@msu.edu" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="text-light" style="color: rgba(255,255,255,0.55);font-size: 25px;">
+                                <path d="M3 8L10.8906 13.2604C11.5624 13.7083 12.4376 13.7083 13.1094 13.2604L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg></a></li>
+                    <li class="list-inline-item"></li>
+                </ul>
+                <p class="text-muted mb-0">Copyright © 2022 Katherine I. Knowles</p>
+            </div>
+        </footer>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Auto-Modal-Popup.js"></script>
+</body>
+
+</html>

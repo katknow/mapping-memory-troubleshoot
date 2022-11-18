@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Stratford Memory Map</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asul">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/Auto-Modal-Popup.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="assets/css/Icon-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+<html lang="en">
+    <head>
+<!--jquery js-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- leaflet files -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<style>
+html, body, #container {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+body {
+    overflow: auto;
+}
+footer{
+  position:static;
+ }
+body {
+  padding-top: 8px;
+}
+.navbar {
+  min-height: 8px;
+}
+    #myMap {
+        position: relative;
+        height: 100%;
+        width: auto;
+       }
+</style>
+</head>
+
+<body style="background: rgb(233, 200, 121);">
+    <nav class="navbar navbar-light navbar-expand-md" style="padding-bottom: 0px;">
+        <div class="container-fluid"><a class="navbar-brand" href="#">Stratford-upon-Avon Memory Map</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="background: rgb(39, 34, 38);">
+                <div class="container"><a class="navbar-brand" href="index.html" style="color: rgb(233, 200, 121);">Stratford-upon-Avon Memory Map</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="background: rgb(233, 200, 121);"><i class="fa fa-bars"></i></button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto text-uppercase">
+                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="guidebooks.html">Guidebooks</a></li>
+                            <li class="nav-item"><a class="nav-link" href="sites.html" style="color: rgba(255, 255, 255, 0.55);">sites</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#guidebooks">Guidebooks</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#methodology">Methodology</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header style="background: url(&quot;assets/img/stratford.jpg&quot;) center / cover no-repeat;height: 250px;">
+        <div class="container">
+            <h1 style="text-align: center;padding-top: 50px;color: rgb(39, 34, 38);font-weight: bold;">GUIDEBOOKS</h1>
+        </div>
+    </header>
+    <div class="container" style="margin-bottom: 25px;margin-top: 25px;">
+        <div class="row d-lg-flex justify-content-lg-center">
+            <div class="col-md-4 col-lg-3" style="margin-left: 10px;margin-right: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);border-style: none;" href="https://www.google.com/books/edition/A_Guide_to_Stratford_upon_Avon/3_0pAAAAYAAJ?hl=en&amp;gbpv=0" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br>A Guide to Stratford-upon-Avon&nbsp;<br>By Robert Bell Wheeler<br>1814&nbsp;</span></a></div>
+            <div class="col-md-4 col-lg-3" style="margin-right: 10px;margin-left: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/Illustrations_of_Stratford_upon_Avon_and/t7QtAAAAYAAJ?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);border-style: none;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br>Illustrations of Stratford-upon-Avon and its Vicinity&nbsp;<br>Published by J. Ward<br>1828&nbsp;</span></a></div>
+            <div class="col-md-4 col-lg-3" style="margin-right: 10px;margin-left: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/The_Stratford_upon_Avon_guide/qJ0NAAAAQAAJ?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);border-style: none;width: 100%;height: 100%;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br>The Stratford-upon-Avon Guide<br>Published by Whittaker &amp; Co.<br>1837&nbsp;</span></a></div>
+        </div>
+    </div>
+    <div class="container" style="margin-bottom: 25px;">
+        <div class="row d-lg-flex justify-content-lg-center" style="border-style: none;">
+            <div class="col-md-4 col-lg-3" style="margin-left: px;margin-right: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/The_Homes_of_Shakspere/MK8NAAAAYAAJ?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);height: 100%;width: 100%;border-style: none;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br><br><br>The Homes of Shakespeare&nbsp;<br>By F.W. Fairholt<br>1847<br><br></span></a></div>
+            <div class="col-md-4 col-lg-3" style="margin-right: 10px;margin-left: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/Illustrated_Guide_to_Stratford_on_Avon/gpZuCSY5xgoC?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);height: 100%;border-style: none;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br><br><br>Illustrated Guide to Stratford-on-Avon&nbsp;<br>By George May<br>1847&nbsp;</span></a></div>
+            <div class="col-md-4 col-lg-3" style="margin-left: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/A_Pilgrimage_to_Stratford_upon_Avon/ZnS4vrUoMq8C?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);border-style: none;height: 100%;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br>A Pilgrimage to Stratford-upon-Avon: The Birthplace of Shakespeare&nbsp;<br>By Charles Vaughan Grinfield<br>1850&nbsp;</span></a></div>
+        </div>
+    </div>
+    <div class="container" style="margin-bottom: 25px;">
+        <div class="row d-lg-flex justify-content-lg-center" style="border-style: none;">
+            <div class="col-md-4 col-lg-3" style="margin-left: px;margin-right: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/Handbook_for_Visitors_to_Stratford_upon/oQVU_xN81_gC?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);height: 100%;width: 100%;border-style: none;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br>Handbook for Visitors to Stratford-upon-Avon&nbsp;<br>Published by Edward Adams<br>1860&nbsp;<br><br></span></a></div>
+            <div class="col-md-4 col-lg-3" style="margin-right: 10px;margin-left: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/Remarks_on_Shakespeare_his_birthplace/7kILQvNgwSMC?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);height: 100%;border-style: none;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br>Remarks on Shakespeare, his Birthplace&nbsp;<br>By Charles Roach Smith<br><br><br></span></a></div>
+            <div class="col-md-4 col-lg-3" style="margin-left: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/Shakespeare_s_Home/n8MjAAAAMAAJ?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);border-style: none;height: 100%;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br><br>Shakespeare's Home<br>By Washington Irving and F.W. Fairholt<br>1877&nbsp;<br></span></a></div>
+        </div>
+    </div>
+    <div class="container d-lg-flex" style="margin-top: 25px;">
+        <div class="row d-lg-flex justify-content-lg-center">
+            <div class="col-md-4 col-lg-3" style="margin-right: 10px;margin-left: 0px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/A_Guide_to_Warwick_Kenilworth_Stratford/aCZubc7FwfUC?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);height: 100%;border-style: none;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 18px;"><br><br>A Guide to Warwick, Kenilworth, Stratford-on-Avon, Coventry, and the Various Places of Interest in the Neighbourhood&nbsp;<br>Published by Henry T. Cooke and Son<br>1879</span></a></div>
+            <div class="col-md-4 col-lg-3" style="margin-right: 10px;margin-left: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/The_Shakespeare_Memorial_Buildings_Strat/NqHsme8vlHIC?hl=en&amp;gbpv=1&amp;dq=%22Stratford-Upon-Avon%22+%2B+%22visit%22&amp;pg=PA8&amp;printsec=frontcover" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);height: 100%;border-style: none;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 20px;"><br><br><br>The Shakespeare Memorial Buildings, Stratford-upon-Avon&nbsp;<br>Published by <br>The Herald Office<br>1879&nbsp;</span></a></div>
+            <div class="col-md-4 col-lg-3" style="margin-left: 10px;"><a class="btn btn-primary d-block icon-button w-100" role="button" href="https://www.google.com/books/edition/The_Shakespearean_Guide_to_Stratford_on/1_ojAAAAMAAJ?hl=en&amp;gbpv=0" style="color: rgba(255,255,255,0.55);background: rgb(39, 34, 38);border-style: none;height: 100%;" target="_blank"><i class="fas fa-book-open" style="font-size: 50px;"></i><span style="font-size: 18px;"><br>The Shakespearean Guide to Stratford-on-Avon: With Chapters on Warwick, Kenilworth, and "the Shakespeare Country" Generally<br>By&nbsp;Henry Snowden Ward and Catherine Weed Barnes Ward<br>1897&nbsp;</span></a></div>
+        </div>
+    </div>
+    <footer>
+        <footer class="text-center bg-dark" style="color: rgb(39, 34, 38);margin-top: 25px;">
+            <div class="container text-white py-4 py-lg-5">
+                <ul class="list-inline">
+                    <li class="list-inline-item me-4"></li>
+                    <li class="list-inline-item me-4"><a href="mailto:knowle50@msu.edu" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="text-light" style="color: rgba(255,255,255,0.55);font-size: 25px;">
+                                <path d="M3 8L10.8906 13.2604C11.5624 13.7083 12.4376 13.7083 13.1094 13.2604L21 8M5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg></a></li>
+                    <li class="list-inline-item"></li>
+                </ul>
+                <p class="text-muted mb-0">Copyright © 2022 Katherine I. Knowles</p>
+            </div>
+        </footer>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Auto-Modal-Popup.js"></script>
+</body>
+
+</html>
