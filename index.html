@@ -1,1297 +1,786 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Michigan Demonstration Map</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Asul">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/Auto-Modal-Popup.css">
-    <link rel="stylesheet" href="assets/css/Footer-Dark.css">
-    <link rel="stylesheet" href="assets/css/Icon-Button.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
 <html lang="en">
     <head>
-<!--jquery js-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- leaflet files -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-<style>
-html, body, #container {
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-}
-body {
-    overflow: auto;
-}
-footer{
-  position:static;
- }
-body {
-  padding-top: 8px;
-}
-.navbar {
-  min-height: 8px;
-}
-    #myMap {
-        position: relative;
-        height: 100%;
-        width: auto;
-       }
-</style>
-</head>
+        <!--jquery js-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- leaflet files -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+            <style>
+                #myMap {position: absolute; top: 0; bottom: 0; left: 0; right:0;}
+          </style>
 
-<body style="color: rgb(39, 34, 38);min-height: 100%;">
-    <div class="modal fade" role="dialog" tabindex="-1" id="contactModal">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Welcome to the Michigan Demonstration Map!</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <p>Brief text about the leak, protests, overturning of Roe v. Wade up to the 2022 midterm elections!<br></p>
-                        </div>
-                    </div>
-                </div>
+        <!--jQuery UI files-->
+            <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+        <!--jQuery UI Touch js, required for touchscreen use-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+            <script src="js/SliderControl.js"></script>
+            <link rel="stylesheet" href= "textbox.css" />
+	    <link rel="stylesheet" href="leaflet-sidebar.css" />
+	  <script src="js/leaflet-sidebar.js"></script>
+	  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	  <link rel="stylesheet" type="text/css" href="L.Control.ZoomBar.css"/>
+	  <script type="text/javascript" src="js/L.Control.ZoomBar.js"></script>
+    <style>
+                .lorem {
+            font-style: normal;
+            color: #000000;
+        }
+
+        html, body, #map {
+            height: 100%;
+            font: 14pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+ 
+        img.resize {
+                 max-width:80%;
+                max-height:80%;
+                  }
+
+        .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        }
+                
+            .mapboxgl-popup {
+        min-width: 1200px;
+                
+        }
+
+        .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+            min-width: 1200px;
+            
+        }
+
+    </style>
+        </head>
+   <body>
+        <div id="myMap"</div>
+	<div id="sidebar" class="leaflet-sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="leaflet-sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#profile" role="tab"><i class="fa fa-bookmark"></i></a></li>
+                <li><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            </ul>
+        <!-- add more tab panes here, copy / paste -->
+        </div>
+
+        <!-- Tab panes -->
+        <div class="leaflet-sidebar-content">
+            <div class="leaflet-sidebar-pane" id="home">
+                <h1 class="leaflet-sidebar-header">
+                    Covid's Closing Door
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+
+
+
+                <p class="lorem">During the Michigan’s lockdown responses to COVID-19 pandemic, beginning on March 16, 2020 Lansing foodservice workers and business owners have faced many challenges, including: health concerns, shutdowns, restricted hours, occupancy limits, poor delivery infrastructure, economic slowdowns, supply-chain issues, and customer hesitancy. Dozens of businesses in the Greater Lansing area have closed permanently or temporarily during the pandemic (Kaminski and Stocken 2020), as Michigan’s foodservice industry faced record financial losses during the months-long dine-in ban and capacity restrictions (Couch and Greco 2020).</p>
+
+                <p class="lorem">Indeed, a survey of Michigan restaurants in April 2020 indicated that nearly four-percent would have to permanently close within the month. Hardest hit were businesses without large savings (Couch and Greco 2020) or established delivery or drive-through services (Couch 2020). Occasionally community members organized support for local businesses, but these were rare, feel good stories in a narrative defined by sale deficits of 50 - 75% where pandemic restrictions were exacerbated by mass unemployment and significant changes in work routines (Couch 2020; Greco 2020).</p>
+
+                <p class="lorem">This map includes Lansing area 15 restaurants, bars, and coffee shops that closed permanently during the pandemic, from March 2020 - August 2021. While each business faced unique circumstances that prompted their closings, all were connected to the broader narrative of the impacts of the pandemic on the foodservice industry in Michigan.</p>
+
+                <p class="lorem">Use the slider in the top right corner of the map to visualize when each business closed, some went out of business in the first weeks of the lockdown, while others stuck it out for months. Click on any of the 15 businesses to read about their specific circumstances derived from owner interviews and official social media posts. In this narrative, the voices of non-owner foodservice workers are missing and was not something broadly accessible at this time.</p>
+            </div>
+
+            <div class="leaflet-sidebar-pane" id="profile">
+                <h1 class="leaflet-sidebar-header">References<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+		  <br>
+		  <li>Couch, Graham (2020) Inside the Lansing-area restaurant industry's fight to survive. <i>Lansing State Journal</i>, July 13, 2020. <a href="https://www.lansingstatejournal.com/story/sports/columnists/graham-couch/2020/05/07/lansing-area-restaurants-fight-to-survive-couch-column/3069370001/" target="_blank">Source</a> </li>
+		  <li>Greco, Rachel (2020) Coronavirus stripped Groovy Donuts of its momentum. Then the community stepped in. <i>Lansing State Journal</i>, May 12, 2020 <a href="https://www.lansingstatejournal.com/story/news/local/2020/05/13/coronavirus-stripped-groovy-donuts-its-momentum-then-community-stepped-in-east-lansing-williamston/3076751001/" target="_blank">Source</a> </li>
+		  <li>Greco, Rachel and Graham Couch (2020) Restaurants that have closed - or are on the edge: For some in Lansing area, COVID-19 was too much. <i>Lansing State Journal</i>, May 28, 2020 <a href="https://www.lansingstatejournal.com/story/news/local/2020/05/27/restaurants-that-have-closed-permanently-in-lansing-mid-michigan-covid-19/5231525002/" target="_blank">Source</a></li>
+		  <li>Kaminski, Kyle and Shauna Stocken (2020) At least 70 businesses gone or paused. <i>City Pulse</i>, May 28, 2020 <a href="https://lansingcitypulse.com/stories/at-least-70-businesses-gone-or-paused,14931" target="_blank">Source</a></li>
+            </div>
+
+            <div class="leaflet-sidebar-pane" id="messages">
+                <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+		    <p><b><a class="one" href="mailto:fadat85580@nefacility.com" target="_blank">Contact Us!</a></b></p>
+            </div>
+
+            <div class="leaflet-sidebar-pane" id="settings">
+                <h1 class="leaflet-sidebar-header">Settings<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <div class="container">
-                <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav" style="background: rgb(39, 34, 38);">
-                    <div class="container"><a class="navbar-brand" href="index.html" style="color: rgb(233, 200, 121);">Michigan Demonstration Map</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="background: rgb(233, 200, 121);"><i class="fa fa-bars"></i></button>
-                        <div class="collapse navbar-collapse" id="navbarResponsive">
-                            <ul class="navbar-nav ms-auto text-uppercase">
-                                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                                <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <div class="container" style="min-width: 100%;max-width: 100%;height: 100%;width: 100%;padding: 0px;min-height: 100%;margin: 0px;max-height: 100%;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;margin-left: 0px;padding-top: 45px;padding-right: 1px;padding-bottom: 1px;padding-left: 1px;"><div id="myMap">ERROR.</div>
-    <script>
-        var map1 = L.map ('myMap', {
-            minZoom: 7.5,
-            maxZoom: 18,
-            zoomControl: false}).setView([43.59743364839015, -84.75832298140293], 7.5);
 
+    <div id="myMap" class="sidebar-map"></div>
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/jacob-cara-e/clacpjey6001d15plh9fpo29x/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamFjb2ItY2FyYS1lIiwiYSI6ImNsYWNvdG1ybzBjaTgzcHBlczU3aTI1MHQifQ.H9XbnFnyjJeYBfQxiDL4-Q', {
-           
-        // zoom control options
-         var zoomOptions = {
-            zoomInText: '+',
-            zoomOutText: '-',
-         };
+        <script>
+            var map1 = L.map ('myMap', {
+		    	minZoom: 7.5,
+                        maxZoom: 18,
+		    zoomControl: false}).setView([43.59743364839015, -84.75832298140293], 7.5);
 
-         var zoom = L.control.zoom(zoomOptions);   // Creating zoom control
-         zoom.addTo(map1);   // Adding zoom control to the map
-           
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-       }).addTo(map1);
-            map1.attributionControl.addAttribution('CHI Fellows 2022-2023, <a href="https://chi.anthropology.msu.edu/", class="your_class">CHI MSU 2022</a>');
+            L.tileLayer('https://api.mapbox.com/styles/v1/jacob-cara-e/clacpjey6001d15plh9fpo29x/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamFjb2ItY2FyYS1lIiwiYSI6ImNsYWNvdG1ybzBjaTgzcHBlczU3aTI1MHQifQ.H9XbnFnyjJeYBfQxiDL4-Q', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+           }).addTo(map1);
+		        map1.attributionControl.addAttribution('CHI Fellows 2022-2023, <a href="https://chi.anthropology.msu.edu/", class="your_class">CHI MSU 2022</a>');
 
 //May
 var dataset1 = [
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.04987996, 42.33075966]
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.04987996, 42.33075966]
+      },
+      properties: {
+          title: 'Detroit March',
+          description: '<b>Location: Detroit</b> <br> On May 3, over one hundred people gathered in Detroit, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.clickondetroit.com/news/politics/2022/05/04/100-rally-in-detroit-to-advocate-for-abortion-rights-following-leaked-scotus-opinion/">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
+
+      }
   },
-  properties: {
-      title: 'Detroit March',
-      description: '<b>Location: Detroit</b> <br> On May 3, over one hundred people gathered in Detroit, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.clickondetroit.com/news/politics/2022/05/04/100-rally-in-detroit-to-advocate-for-abortion-rights-following-leaked-scotus-opinion/">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.05083226, 42.33706262]
+      },
+      properties: {
+          title: 'Detroit March',
+          description: '<b>Location: Detroit</b> <br> On May 7, abortion rights advocates gathered in Detroit, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.clickondetroit.com/sports/2022/05/08/pro-choice-supporters-hold-rally-in-downtown-detroit/">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.05083226, 42.33706262]
+      }
   },
-  properties: {
-      title: 'Detroit March',
-      description: '<b>Location: Detroit</b> <br> On May 7, abortion rights advocates gathered in Detroit, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.clickondetroit.com/sports/2022/05/08/pro-choice-supporters-hold-rally-in-downtown-detroit/">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-82.4275378, 42.9882917]
+      },
+      properties: {
+          title: 'Port Huron March',
+          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/279563972_100164662700317_5287783592749933360_n.jpg"> <br> <b>Location: Port Huron</b> <br> On May 8, St. Clair County Pro-Choice gathered in Port Huron, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/100140859369364/photos/gm.515782530274236/100164666033650">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-82.4275378, 42.9882917]
+      }
   },
-  properties: {
-      title: 'Port Huron March',
-      description: '<img class="popupImage" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/279563972_100164662700317_5287783592749933360_n.jpg"> <br> <b>Location: Port Huron</b> <br> On May 8, St. Clair County Pro-Choice gathered in Port Huron, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/100140859369364/photos/gm.515782530274236/100164666033650">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.33302713, 46.49601166]
+      },
+      properties: {
+          title: 'Sault St. Marie March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2021/11/05/NSLT/22bd766f-0f9b-4c85-aa26-160f9d330f4c-IMG-4778.jpg"> <br> <b>Location: Sault St. Marie</b> <br> On May 14, several locals gathered in Sault St. Marie, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.sooeveningnews.com/story/news/local/2022/05/13/sault-activists-plan-reproductive-rights-walk-saturday/9743823002/">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.33302713, 46.49601166]
+      }
   },
-  properties: {
-      title: 'Sault St. Marie March',
-      description: '<img class="popupImage" src="https://www.gannett-cdn.com/presto/2021/11/05/NSLT/22bd766f-0f9b-4c85-aa26-160f9d330f4c-IMG-4778.jpg"> <br> <b>Location: Sault St. Marie</b> <br> On May 14, several locals gathered in Sault St. Marie, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.sooeveningnews.com/story/news/local/2022/05/13/sault-activists-plan-reproductive-rights-walk-saturday/9743823002/">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.95851732, 45.3754741]
+      },
+      properties: {
+          title: 'Petoskey March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/05/16/NPNR/f2c0fdb8-569c-4524-821b-c244681cf5ec-Protest_8.jpg"> <br> <b>Location: Petoskey</b> <br> On May 14, more than 120 people gathered in Petoskey, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.petoskeynews.com/story/news/2022/05/16/saturday-rally-petoskey-shows-support-pro-choice-legislation/9791488002/">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-  }
-},
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.95851732, 45.3754741]
+      }
   },
-  properties: {
-      title: 'Petoskey March',
-      description: '<img class="popupImage" src="https://www.gannett-cdn.com/presto/2022/05/16/NPNR/f2c0fdb8-569c-4524-821b-c244681cf5ec-Protest_8.jpg"> <br> <b>Location: Petoskey</b> <br> On May 14, more than 120 people gathered in Petoskey, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.petoskeynews.com/story/news/2022/05/16/saturday-rally-petoskey-shows-support-pro-choice-legislation/9791488002/">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.68794234, 43.01184792]
+      },
+      properties: {
+          title: 'Flint March',
+          description: '<img class="resize center" src="https://www.eastvillagemagazine.org/wp-content/uploads/2022/05/IMG-4867-768x576.jpg"> <b>Location: Flint</b> <br>  <br> On May 14, around 250 people gathered in Flint, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.eastvillagemagazine.org/2022/05/14/defend-roe-rally-draws-250-to-downtown-protest-its-not-just-about-protests-vote-speakers-say/">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-  }
-},
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.68794234, 43.01184792]
+      }
   },
-  properties: {
-      title: 'Flint March',
-      description: '<img class="popupImage" src="https://www.eastvillagemagazine.org/wp-content/uploads/2022/05/IMG-4867-768x576.jpg"> <br> <b>Location: Flint</b> <br> On May 14, around 250 people gathered in Flint, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.eastvillagemagazine.org/2022/05/14/defend-roe-rally-draws-250-to-downtown-protest-its-not-just-about-protests-vote-speakers-say/">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-86.25156456, 43.2330548]
+      },
+      properties: {
+          title: 'Muskegon March',
+          description: '<b>Location: Muskegon</b> <br> On May 14, activists gathered in Muskegon, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.youtube.com/watch?v=L996B0eliFI&ab_channel=13ONYOURSIDE">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-86.25156456, 43.2330548]
+      }
   },
-  properties: {
-      title: 'Muskegon March',
-      description: '<b>Location: Muskegon</b> <br> On May 14, activists gathered in Muskegon, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.youtube.com/watch?v=L996B0eliFI&ab_channel=13ONYOURSIDE">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.96595995, 43.41804227]
+      },
+      properties: {
+          title: 'Saginaw March',
+          description: '<img class="resize center" src="https://www.mlive.com/resizer/HISp2gc0Feg28MCK2PweNkyo7mM=/800x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/Z76IUQGJFRAYJOI4I6XHEZG3M4.JPG"> <br> <b>Location: Saginaw</b> <br> On May 14, activists gathered in Saginaw, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mlive.com/news/saginaw-bay-city/2022/05/protest-planned-in-saginaw-as-future-of-roe-v-wade-remains-uncertain.html">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.96595995, 43.41804227]
+      }
   },
-  properties: {
-      title: 'Saginaw March',
-      description: '<img class="popupImage" src="https://www.mlive.com/resizer/HISp2gc0Feg28MCK2PweNkyo7mM=/800x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/Z76IUQGJFRAYJOI4I6XHEZG3M4.JPG"> <br> <b>Location: Saginaw</b> <br> On May 14, activists gathered in Saginaw, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mlive.com/news/saginaw-bay-city/2022/05/protest-planned-in-saginaw-as-future-of-roe-v-wade-remains-uncertain.html">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.5553193, 42.73360374]
+      },
+      properties: {
+          title: 'Lansing March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/05/15/PLSJ/98c756cc-4493-4d64-8473-13649ac67a4f-pro_choice_rally-8.jpg"> <br> <b>Location: Alpena</b> <br> On May 15, around seven hundred people gathered in Lansing, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.lansingstatejournal.com/picture-gallery/news/local/2022/05/15/pro-choice-advocates-rally-at-the-capitol-sunday/9787883002/">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.5553193, 42.73360374]
+      }
   },
-  properties: {
-      title: 'Lansing March',
-      description: '<img class="popupImage" src="https://www.gannett-cdn.com/presto/2022/05/15/PLSJ/98c756cc-4493-4d64-8473-13649ac67a4f-pro_choice_rally-8.jpg"> <br> <b>Location: Alpena</b> <br> On May 15, around seven hundred people gathered in Lansing, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.lansingstatejournal.com/picture-gallery/news/local/2022/05/15/pro-choice-advocates-rally-at-the-capitol-sunday/9787883002/">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-85.62466569, 44.76658633]
+      },
+      properties: {
+          title: 'Traverse City',
+          description: '<b>Location: Traverse City</b> <br> On May 16, hundreds gathered in Traverse City, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://upnorthlive.com/news/local/hundreds-gather-bans-off-our-bodies-rally-in-traverse-city">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-85.62466569, 44.76658633]
+      }
   },
-  properties: {
-      title: 'Traverse City',
-      description: '<b>Location: Traverse City</b> <br> On May 16, hundreds gathered in Traverse City, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://upnorthlive.com/news/local/hundreds-gather-bans-off-our-bodies-rally-in-traverse-city">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.13305268, 42.68058489]
+      },
+      properties: {
+          title: 'Rochester March',
+          description: '<img class="resize center" src="https://www.theoaklandpress.com/wp-content/uploads/2022/05/RochesterWalkout.jpg"> <br> <b>Location: Rochester</b> <br> On May 21, high school students gathered in Rochester, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.theoaklandpress.com/2022/05/21/rochester-students-walk-out-to-support-roe-v-wade/">here</a>!',
+          time: '2022/05',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.13305268, 42.68058489]
+      }
   },
-  properties: {
-      title: 'Rochester March',
-      description: '<img class="popupImage" src="https://www.theoaklandpress.com/wp-content/uploads/2022/05/RochesterWalkout.jpg"> <br> <b>Location: CITY</b> <br> On May 21, high school students gathered in city, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.theoaklandpress.com/2022/05/21/rochester-students-walk-out-to-support-roe-v-wade/">here</a>!',
-      time: '2022/05',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [30, 30],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
-
-  }
-},
 
 ];
 
 //June
 var dataset2 = [
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.95812323, 45.37447479]
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.95812323, 45.37447479]
+      },
+      properties: {
+          title: 'Petoskey March',
+          description: '<img class="resize center" src="https://s.yimg.com/ny/api/res/1.2/7_5IHB7.BX7dPIe1EItHNw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MDtjZj13ZWJw/https://media.zenfs.com/en/petoskey-news-review/7782a69ff0bee47e6aa0afadb37009fe"> <br> <b>Location: Petoskey</b> <br> On June 3, activists gathered in Petoskey, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.yahoo.com/lifestyle/crowd-gathers-downtown-protest-overturning-213315325.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAHv_jv27luFUlF55dOFxw9MIuoYJWzBTCVbrMGRWaWeKKijTthygXWTK2xI4LU7ehgJnzyPoGWtjK_u3OCIfjfRAAwThKLuUf8iMKD27y2DSRhk60RTdi8rgOShe6y9Ak60wWziSmZ4TMItO_tCg4GB-OrPg2pVwLjniEwa8H0xR">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
+
+      }
   },
-  properties: {
-      title: 'Petoskey March',
-      description: '<img class="resize center" src="https://s.yimg.com/ny/api/res/1.2/7_5IHB7.BX7dPIe1EItHNw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MDtjZj13ZWJw/https://media.zenfs.com/en/petoskey-news-review/7782a69ff0bee47e6aa0afadb37009fe"> <br> <b>Location: Petoskey</b> <br> On June 3, activists gathered in Petoskey, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.yahoo.com/lifestyle/crowd-gathers-downtown-protest-overturning-213315325.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&guce_referrer_sig=AQAAAHv_jv27luFUlF55dOFxw9MIuoYJWzBTCVbrMGRWaWeKKijTthygXWTK2xI4LU7ehgJnzyPoGWtjK_u3OCIfjfRAAwThKLuUf8iMKD27y2DSRhk60RTdi8rgOShe6y9Ak60wWziSmZ4TMItO_tCg4GB-OrPg2pVwLjniEwa8H0xR">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLie.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-82.42754855, 42.98687111]
+      },
+      properties: {
+          title: 'Port Huron March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/06/24/PPOH/7aab56ad-d5d5-4c94-86d0-b701d3129204-_DSC5262.JPG"> <br> <b>Location: CITY</b> <br> On June 4, local community members gathered in Port Huron, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.thetimesherald.com/story/news/2022/06/24/port-huron-abortion-protest-democrats-roe-v-wade-reproductive-rights/7724620001/">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-82.42754855, 42.98687111]
+      }
   },
-  properties: {
-      title: 'Port Huron March',
-      description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/06/24/PPOH/7aab56ad-d5d5-4c94-86d0-b701d3129204-_DSC5262.JPG"> <br> <b>Location: CITY</b> <br> On June 4, local community members gathered in Port Huron, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.thetimesherald.com/story/news/2022/06/24/port-huron-abortion-protest-democrats-roe-v-wade-reproductive-rights/7724620001/">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-82.42754855, 42.98687111]
+      },
+      properties: {
+          title: 'Houghton March',
+          description: '<img class="resize center" src="https://ogden_images.s3.amazonaws.com/www.mininggazette.com/images/2022/05/15171116/5-16-roe-protest-3-gn-909x840.jpg"> <br> <b>Location: Houghton</b> <br> On June 16, forty residents gathered in Houghton, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mininggazette.com/news/front-page/2022/05/bans-off-our-bodies-demonstration-held/">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-82.42754855, 42.98687111]
+      }
   },
-  properties: {
-      title: 'Houghton March',
-      description: '<img class="resize center" src="https://ogden_images.s3.amazonaws.com/www.mininggazette.com/images/2022/05/15171116/5-16-roe-protest-3-gn-909x840.jpg"> <br> <b>Location: Houghton</b> <br> On June 16, forty residents gathered in Houghton, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mininggazette.com/news/front-page/2022/05/bans-off-our-bodies-demonstration-held/">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.5553193, 42.73360374]
+      },
+      properties: {
+          title: 'Lansing March',
+          description: '<img class="resize center" src="https://scontent.fdet2-1.fna.fbcdn.net/v/t39.30808-6/289831247_394557309372814_8251278486509752252_n.jpg"> <br> <b>Location: Lansing</b> <br> On June 24, hundreds gathered in Lansing, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/529622758902558/?ref=newsfeed">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.5553193, 42.73360374]
+      }
   },
-  properties: {
-      title: 'Lansing March',
-      description: '<img class="resize center" src="https://scontent.fdet2-1.fna.fbcdn.net/v/t39.30808-6/289831247_394557309372814_8251278486509752252_n.jpg"> <br> <b>Location: Lansing</b> <br> On June 24, hundreds gathered in Lansing, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/529622758902558/?ref=newsfeed">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-85.58583191, 42.29394955]
+      },
+      properties: {
+          title: 'Kalamazoo March',
+          description: '<img class="resize center" src="https://www.mlive.com/resizer/gpveQoNegSqS1pfZnvq5O8FeHlo=/500x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/RYOATOHD3RDPLGM2MZEG6OWWYI.jpg"> <br> <b>Location: Kalamazoo</b> <br> On June 24, community members gathered in Kalamazoo, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mlive.com/news/kalamazoo/2022/06/passionate-protests-of-supreme-courts-overturn-of-roe-v-wade-made-at-kalamazoo-rally.html">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-85.58583191, 42.29394955]
+      }
   },
-  properties: {
-      title: 'Kalamazoo March',
-      description: '<img class="resize center" src="https://www.mlive.com/resizer/gpveQoNegSqS1pfZnvq5O8FeHlo=/500x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/RYOATOHD3RDPLGM2MZEG6OWWYI.jpg"> <br> <b>Location: Kalamazoo</b> <br> On June 24, community members gathered in Kalamazoo, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mlive.com/news/kalamazoo/2022/06/passionate-protests-of-supreme-courts-overturn-of-roe-v-wade-made-at-kalamazoo-rally.html">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-86.24422116, 43.23489615]
+      },
+      properties: {
+          title: 'Muskegon March',
+          description: '<img class="resize center" src="https://ewscripps.brightspotcdn.com/dims4/default/5368b79/2147483647/strip/true/crop/3120x1755+0+1283/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fa9%2F73%2F8d82f6aa4adf990d8b644bb15245%2Fmuskegon-protest.jpg"> <br> <b>Location: Muskegon</b> <br> On June 24, community members gathered in Muskegon, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.fox17online.com/news/local-news/lakeshore/muskegon/muskegon-hosts-protest-over-scotus-abortion-decision">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-86.24422116, 43.23489615]
+      }
   },
-  properties: {
-      title: 'Muskegon March',
-      description: '<img class="resize center" src="https://ewscripps.brightspotcdn.com/dims4/default/5368b79/2147483647/strip/true/crop/3120x1755+0+1283/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2Fa9%2F73%2F8d82f6aa4adf990d8b644bb15245%2Fmuskegon-protest.jpg"> <br> <b>Location: Muskegon</b> <br> On June 24, community members gathered in Muskegon, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.fox17online.com/news/local-news/lakeshore/muskegon/muskegon-hosts-protest-over-scotus-abortion-decision">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.13377404, 42.46059624]
+      },
+      properties: {
+          title: 'Ferndale March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/06/25/PDTF/a1e8c4c7-b9de-42a5-bd24-b7db0c9eefd9-06242022_a2vigil-1.jpg"> <br> <b>Location: Ferndale</b> <br> On June 24, community members gathered in Ferndale, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.freep.com/story/news/local/michigan/2022/06/24/roe-v-wade-protests-celebrations-metro-detroit/7727647001/">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.13377404, 42.46059624]
+      }
   },
-  properties: {
-      title: 'Ferndale March',
-      description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/06/25/PDTF/a1e8c4c7-b9de-42a5-bd24-b7db0c9eefd9-06242022_a2vigil-1.jpg"> <br> <b>Location: Ferndale</b> <br> On June 24, community members gathered in Ferndale, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.freep.com/story/news/local/michigan/2022/06/24/roe-v-wade-protests-celebrations-metro-detroit/7727647001/">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.97548942, 43.48016075]
+      },
+      properties: {
+          title: 'Saginaw March',
+          description: '<img class="resize center" src="https://www.mlive.com/resizer/m09mgn8_4-ZuLbpVJsoBMDB35DQ=/500x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/TTTMXTRPSVEQTDLZE6YNJXZU4I.JPG"> <br> <b>Location: Saginaw</b> <br> On June 24, residents gathered in Saginaw, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mlive.com/news/saginaw-bay-city/2022/06/protestors-gather-near-saginaw-mall-in-reaction-to-roe-vs-wade-overturn.html">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.97548942, 43.48016075]
+      }
   },
-  properties: {
-      title: 'Saginaw March',
-      description: '<img class="resize center" src="https://www.mlive.com/resizer/m09mgn8_4-ZuLbpVJsoBMDB35DQ=/500x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/TTTMXTRPSVEQTDLZE6YNJXZU4I.JPG"> <br> <b>Location: Saginaw</b> <br> On June 24, residents gathered in Saginaw, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mlive.com/news/saginaw-bay-city/2022/06/protestors-gather-near-saginaw-mall-in-reaction-to-roe-vs-wade-overturn.html">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.73821043, 42.27713762]
+      },
+      properties: {
+          title: 'Ann Arbor March',
+          description: '<img class="resize center" src="https://www.mlive.com/resizer/qLULSGt5Dfqx9pRRbKpVzq8cui0=/500x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/72WAV6X3M5CV5CWM2MO6CY4O6M.JPG"> <br> <b>Location: Ann Arbor</b> <br> On June 24, Washtenaw Helpers on Abortion Access gathered in Ann Arbor, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mlive.com/news/ann-arbor/2022/06/abortion-rights-supporters-march-in-ann-arbor-to-protest-overturn-of-roe-v-wade.html">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.73821043, 42.27713762]
+      }
   },
-  properties: {
-      title: 'Ann Arbor March',
-      description: '<img class="resize center" src="https://www.mlive.com/resizer/qLULSGt5Dfqx9pRRbKpVzq8cui0=/500x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/72WAV6X3M5CV5CWM2MO6CY4O6M.JPG"> <br> <b>Location: Ann Arbor</b> <br> On June 24, Wastenaw Helpers on Abortion Access gathered in Ann Arbor, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.mlive.com/news/ann-arbor/2022/06/abortion-rights-supporters-march-in-ann-arbor-to-protest-overturn-of-roe-v-wade.html">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-86.10427509, 42.79037489]
+      },
+      properties: {
+          title: 'Holland March',
+          description: '<b>Location: Holland</b> <br> On June 27, crowds gathered in Holland, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.hollandsentinel.com/picture-gallery/news/local/2022/06/28/hundreds-rally-abortion-rights-downtown-holland/7752785001/">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-86.10427509, 42.79037489]
+      }
   },
-  properties: {
-      title: 'Holland March',
-      description: '<b>Location: Holland</b> <br> On June 27, crowds gathered in Holland, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.hollandsentinel.com/picture-gallery/news/local/2022/06/28/hundreds-rally-abortion-rights-downtown-holland/7752785001/">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.1428258, 42.49072003]
+      },
+      properties: {
+          title: 'Royal Oak March',
+          description: '<b>Location: Royal Oak</b> <br> On June 28, community members gathered in Royal Oak, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://m.facebook.com/events/716702179580517/">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.1428258, 42.49072003]
+      }
   },
-  properties: {
-      title: 'Royal Oak March',
-      description: '<b>Location: Royal Oak</b> <br> On June 28, community members gathered in Royal Oak, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://m.facebook.com/events/716702179580517/">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.39583538, 42.55500807]
+      },
+      properties: {
+          title: 'West Bloomfield March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/06/30/PDTF/87b198f6-7e77-4ca2-b87a-b2453fb314cc-062922_JewishAbortionRa7.jpg"> <br> <b>Location: West Bloomfield</b> <br> On June 29, the Jewish community gathered in West Bloomfield, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.freep.com/story/news/local/michigan/oakland/2022/06/30/jews-rally-abortion-synagogue-michigan/7770470001/">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.39583538, 42.55500807]
+      }
   },
-  properties: {
-      title: 'West Bloomfield March',
-      description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/06/30/PDTF/87b198f6-7e77-4ca2-b87a-b2453fb314cc-062922_JewishAbortionRa7.jpg"> <br> <b>Location: West Bloomfield</b> <br> On June 29, the Jewish community gathered in West Bloomfield, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.freep.com/story/news/local/michigan/oakland/2022/06/30/jews-rally-abortion-synagogue-michigan/7770470001/">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-76.79995327, 42.91095473]
+      },
+      properties: {
+          title: 'Seneca Falls March',
+          description: '<img class="resize center" src="https://bloximages.chicago2.vip.townnews.com/fltimes.com/content/tncms/assets/v3/editorial/6/fd/6fd9ea77-5da7-5f40-9242-3f4f3e7038ca/62b611e7a71c2.image.jpg"> <br> <b>Location: Seneca Falls</b> <br> On June 24, the Geneva Womens Assembly and the Party for Socialism and Liberation, Finger Lakes Branch, gathered in Seneca Falls, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.fltimes.com/news/emergency-rally-opposing-roe-v-wade-decision-planned-for-seneca-falls/article_d6624fb7-9544-5e5e-bfc7-8eb13a1f14f6.html">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-76.79995327, 42.91095473]
+      }
   },
-  properties: {
-      title: 'Seneca Falls March',
-      description: '<img class="resize center" src="https://bloximages.chicago2.vip.townnews.com/fltimes.com/content/tncms/assets/v3/editorial/6/fd/6fd9ea77-5da7-5f40-9242-3f4f3e7038ca/62b611e7a71c2.image.jpg"> <br> <b>Location: Seneca Falls</b> <br> On June 24, the Geneva Women’s Assembly and the Party for Socialism and Liberation, Finger Lakes Branch, gathered in Seneca Falls, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.fltimes.com/news/emergency-rally-opposing-roe-v-wade-decision-planned-for-seneca-falls/article_d6624fb7-9544-5e5e-bfc7-8eb13a1f14f6.html">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-87.39556695, 46.54384773]
+      },
+      properties: {
+          title: 'Marquette City March',
+          description: '<b>Location: Marquette City</b> <br> On June 24, dozens gathered in Marquette City, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.uppermichiganssource.com/2022/06/25/dozens-attend-abortion-rights-protest-downtown-marquette/">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-87.39556695, 46.54384773]
+      }
   },
-  properties: {
-      title: 'Marquette City March',
-      description: '<b>Location: Marquette City</b> <br> On June 24, dozens gathered in Marquette City, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.uppermichiganssource.com/2022/06/25/dozens-attend-abortion-rights-protest-downtown-marquette/">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.02776849, 42.49319804]
+      },
+      properties: {
+          title: 'Warren March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/06/25/PDTN/f464684f-f20f-4fe1-a870-2a72809fbf78-DSC_0625.JPG?width=1320&height=880&fit=crop&format=pjpg&auto=webp"> <br> <b>Location: Warren</b> <br> On June 25, Warrens Our Bodies Our Rights gathered in Warren, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.detroitnews.com/story/news/local/macomb-county/2022/06/25/pro-choice-warren-residents-rally-reproductive-rights/7734527001/">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.02776849, 42.49319804]
+      }
   },
-  properties: {
-      title: 'Warren March',
-      description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/06/25/PDTN/f464684f-f20f-4fe1-a870-2a72809fbf78-DSC_0625.JPG?width=1320&height=880&fit=crop&format=pjpg&auto=webp"> <br> <b>Location: Warren</b> <br> On June 25, Warrens Our Bodies Our Rights gathered in Warren, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.detroitnews.com/story/news/local/macomb-county/2022/06/25/pro-choice-warren-residents-rally-reproductive-rights/7734527001/">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
 
-  }
-},
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.24725715, 43.61396832]
+      },
+      properties: {
+          title: 'Midland March',
+          description: '<img class="resize center" src="https://s.hdnux.com/photos/01/25/46/26/22439346/4/ratio3x2_1200.jpg"> <br> <b>Location: Midland</b> <br> On June 27, community members gathered in Midland, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.ourmidland.com/news/article/Midland-to-hold-reproductive-rights-rally-on-17265438.php">here</a>!',
+          time: '2022/06',
+        icon: {
+              iconUrl: 'img/ProRoe.png',
+              iconSize: [30, 30],
+              iconAnchor: [3, 35],
+              popupAnchor: [0, -41],
+              className: 'dot',
+                      }
 
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.24725715, 43.61396832]
+      }
   },
-  properties: {
-      title: 'Midland March',
-      description: '<img class="resize center" src="https://s.hdnux.com/photos/01/25/46/26/22439346/4/ratio3x2_1200.jpg"> <br> <b>Location: Midland</b> <br> On June 27, community members gathered in Midland, Michigan to protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.ourmidland.com/news/article/Midland-to-hold-reproductive-rights-rally-on-17265438.php">here</a>!',
-      time: '2022/06',
-    icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
-
-  }
-},
 
 
 ];
 
 //july
 var dataset3 = [
-{
- type: 'Feature',
- geometry: {
-     type: 'Point',
-     coordinates: [-86.21807394, 43.06101798]
+  {
+     type: 'Feature',
+     geometry: {
+         type: 'Point',
+         coordinates: [-86.21807394, 43.06101798]
+     },
+     properties: {
+         title: 'Grand Haven March',
+         description: '<img class="resize center" src="https://bloximages.newyork1.vip.townnews.com/grandhaventribune.com/content/tncms/assets/v3/editorial/d/67/d67c21e0-985b-518d-b8f0-4dbaf9415fc9/62bf5c575e219.image.jpg"> <br> <b>Location: Grand Haven</b> <br> On July 1, about 40 community members gathered in Grand Haven, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.grandhaventribune.com/news/local/protestors-react-to-supreme-court-decision-with-grand-haven-march/article_c62ae702-0624-5d17-bab9-2f0332bec8de.html">here</a>!',
+         time: '2022/07',
+         icon: {
+             iconUrl: 'img/ProRoe.png',
+             iconSize: [30, 30],
+             iconAnchor: [3, 35],
+             popupAnchor: [0, -41],
+             className: 'dot',
+                     }
+     }
  },
- properties: {
-     title: 'Grand Haven March',
-     description: '<img class="resize center" src="https://bloximages.newyork1.vip.townnews.com/grandhaventribune.com/content/tncms/assets/v3/editorial/d/67/d67c21e0-985b-518d-b8f0-4dbaf9415fc9/62bf5c575e219.image.jpg"> <br> <b>Location: Grand Haven</b> <br> On July 1, about 40 community members gathered in Grand Haven, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.grandhaventribune.com/news/local/protestors-react-to-supreme-court-decision-with-grand-haven-march/article_c62ae702-0624-5d17-bab9-2f0332bec8de.html">here</a>!',
-     time: '2022/07',
-     icon: {
-         iconUrl: 'img/ProRoe.png',
-         iconSize: [25, 41],
-         iconAnchor: [3, 35],
-         popupAnchor: [0, -41],
-         className: 'dot',
-                 }
- }
-},
 
-{
- type: 'Feature',
- geometry: {
-     type: 'Point',
-     coordinates: [-85.52746686, 41.92310502]
- },
- properties: {
-     title: 'Centreville March',
-     description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/05/NSTJ/716df7dc-0f1d-4712-9c4d-bdef02e6e5d8-IMG_6457_copy.jpg"> <br> <b>Location: Centreville</b> <br> On July 2, Three Rivers Pride and the St. Joseph County Democratic Party organized a rally in Centreville, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.sturgisjournal.com/story/news/2022/07/06/news-roe-v-wade-protest/7810757001/">here</a>!',
-     time: '2022/07',
-icon: {
-                     iconUrl: 'img/ProRoe.png',
-                     iconSize: [25, 41],
-                     iconAnchor: [3, 35],
-                     popupAnchor: [0, -41],
-                     className: 'dot',
-                 }
-
-
- }
-},
-
-{
- type: 'Feature',
- geometry: {
-     type: 'Point',
-     coordinates: [-84.55321651, 42.73432382]
- },
- properties: {
-     title: 'Saline',
-     description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/04/PLSJ/cbf85d18-b274-44da-93f0-1662b83c82ba-20220704_152001156_iOS.jpg"> <br> <b>Location: Lansing</b> <br> On July 4, Lansing community members organized a rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling during the Independence Day Parade. Read more <a href="https://www.lansingstatejournal.com/story/news/local/2022/07/04/celebrations-protests-clash-july-4-lansing/7791867001/">here</a>!',
-     time: '2022/07',
-icon: {
-                     iconUrl: 'img/ProRoe.png',
-                     iconSize: [25, 41],
-                     iconAnchor: [3, 35],
-                     popupAnchor: [0, -41],
-                     className: 'dot',
-                 }
- }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-86.21807394, 43.06101798]
-  },
-  properties: {
-      title: 'Grand Haven March',
-      description: '<img class="resize center" src="https://bloximages.newyork1.vip.townnews.com/grandhaventribune.com/content/tncms/assets/v3/editorial/d/67/d67c21e0-985b-518d-b8f0-4dbaf9415fc9/62bf5c575e219.image.jpg"> <br> <b>Location: Grand Haven</b> <br> On July 1, about 40 community members gathered in Grand Haven, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.grandhaventribune.com/news/local/protestors-react-to-supreme-court-decision-with-grand-haven-march/article_c62ae702-0624-5d17-bab9-2f0332bec8de.html">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-85.52746686, 41.92310502]
-  },
-  properties: {
-      title: 'Centreville March',
-      description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/05/NSTJ/716df7dc-0f1d-4712-9c4d-bdef02e6e5d8-IMG_6457_copy.jpg"> <br> <b>Location: Centreville</b> <br> On July 2, Three Rivers Pride and the St. Joseph County Democratic Party organized a rally in Centreville, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.sturgisjournal.com/story/news/2022/07/06/news-roe-v-wade-protest/7810757001/">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-
-
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.55321651, 42.73432382]
-  },
-  properties: {
-      title: 'Saline',
-      description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/04/PLSJ/cbf85d18-b274-44da-93f0-1662b83c82ba-20220704_152001156_iOS.jpg"> <br> <b>Location: Lansing</b> <br> On July 4, Lansing community members organized a rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling during the Independence Day Parade. Read more <a href="https://www.lansingstatejournal.com/story/news/local/2022/07/04/celebrations-protests-clash-july-4-lansing/7791867001/">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.23976715, 42.77675836]
-  },
-  properties: {
-      title: 'Lansing March',
-      description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/289357148_2495151860621710_6136594774970141051_n.jpg"> <br> <b>Location: Lansing</b> <br> On July 4, Lansing Pro-Choice organized a rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.pharostribune.com/news/article_46fa2730-fa56-11ec-90d4-97739f9112f4.html">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.78148527, 42.1685236]
-  },
-  properties: {
-      title: 'Saline March',
-      description: '<img class="resize center" src="https://thesalinepost.com/sites/default/files/styles/extra_large/public/277/2022-07/protest_6.jpg"> <br> <b>Location: Saline</b> <br> On July 5, Saline residents organized a rally in Saline, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://thesalinepost.com/g/saline-mi/n/110196/citizens-plan-another-abortion-rights-rally-saline-saturday-6-pm">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-88.56955982, 47.12114813]
-  },
-  properties: {
-      title: 'Houghton March',
-      description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/290605885_158988973342393_5900770303442909199_n.jpg"> <br> <b>Location: Houghton</b> <br> On July 7, Houghton residents organized a "Bans of Our Bodies" rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://facebook.com/events/769188311113925/?ref=newsfeed">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.5553193, 42.73360374]
-  },
-  properties: {
-      title: 'Lansing March',
-      description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/241434312_238502511410800_7337888945291820085_n.jpg"> <br> <b>Location: Lansing</b> <br> On July 9, led by Planned Parenthood, residents organized a "Bans of Our Bodies" rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/LansingProChoice">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.78148527, 42.1685236]
-  },
-  properties: {
-      title: 'Saline March',
-      description: '<img class="resize center" src="https://thesalinepost.com/sites/default/files/styles/extra_large/public/277/2022-07/protest_6.jpg?itok=JW5MPSFL"> <br> <b>Location: Saline</b> <br> On July 9, residents organized a second "Bans of Our Bodies" rally in Saline, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://thesalinepost.com/g/saline-mi/n/110196/citizens-plan-another-abortion-rights-rally-saline-saturday-6-pm">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.68834192, 43.0118237]
-  },
-  properties: {
-      title: 'Flint March',
-      description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/291788314_115764924513997_6128801527649387259_n.jpg"> <br> <b>Location: Flint</b> <br> On July 10, residents organized a rally in Flint, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/452597626319563/?ref=newsfeed">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.36280987, 42.41364032]
-  },
-  properties: {
-      title: 'Livonia March',
-      description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/23/POEN/9074572d-cc3c-4df7-a44d-c235ac0d4d29-LIVProtest6.JPG"> <br> <b>Location: Livonia</b> <br> On July 23, led by Livonia Womens Rights, residents organized a rally in Livonia, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.hometownlife.com/story/news/local/livonia/2022/07/23/abortion-rights-march-livonia-draws-hundreds-supporters/10135356002/">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.7390498, 42.27926773]
-  },
-  properties: {
-      title: 'Ann Arbor March',
-      description: '<img class="resize center" src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-07/220725-uofm-walkout-sj-1238p-8ca30e.jpg"> <br> <b>Location: Ann Arbor</b> <br> On July 24, University of Michigan medical students walked out of their whitecoat ceremony to protest an anti-abortion keynote speaker, following the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.cnn.com/2022/07/26/us/medical-student-abortion-protest-university-of-michigan">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.38413875, 42.32521391]
-  },
-  properties: {
-      title: 'Westland March',
-      description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/294317198_423861223006640_7251611621875994290_n.jpg"> <br> <b>Location: Westland</b> <br> On July 24, community members led by Michigan Pro-Choice with Heart led a rally protesting the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/496773995585270/?ref=newsfeed">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-
-];
-
-//August
-var dataset4 = [
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-83.38413875, 42.32521391]
-  },
-  properties: {
-      title: 'Westland March',
-      description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/294317198_423861223006640_7251611621875994290_n.jpg"> <br><b>Location: Westland</b> <br>On July 24, community members led by Michigan Pro-Choice with Heart led a rally protesting the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/496773995585270/?ref=newsfeed">here</a>!',
-      time: '2022/07',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-{
-type: 'Feature',
-geometry: {
-    type: 'Point',
-    coordinates: [-83.29326935, 42.64016014]
-},
-properties: {
-    title: 'Pontiac March',
-    description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/293601170_422651026460993_453396420367664039_n.jpg"> <br><b>Location: Liberty Bar</b> <br>On August 22, Pontiac, Michigan, community members led by Michigan Pro-Choice with Heart led a "Rally, Get Out & Vote @ Liberty Bar" then marched to the county courthouse to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/572416621265081/?ref=newsfeed">here</a>!',
-    time: '2022/08',
-    icon: {
-            iconUrl: 'img/ProRoe.png',
-            iconSize: [25, 41],
-            iconAnchor: [3, 35],
-            popupAnchor: [0, -41],
-            className: 'dot',
-                }
-    }
-},
-
-{
-             type: 'Feature',
-             geometry: {
-                 type: 'Point',
-                 coordinates: [-84.48718202, 45.63403203]
-             },
-             properties: {
-                 title: 'Cheboygan March',
-                 description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/287071251_5572724939427746_1914381179394633413_n.jpg"> <br><b>Location: Cheboygan Trailhead</b> <br>On August 6, community members in Cheboygan, Michigan, organized a "Bike Rally 4 Life" in favor of the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://fb.me/e/25cQxFsnf">here</a>!',
-                 time: '2022/08',
-                 icon: {
-                         iconUrl: 'img/ProLife.png',
-                         iconSize: [25, 41],
+ {
+     type: 'Feature',
+     geometry: {
+         type: 'Point',
+         coordinates: [-85.52746686, 41.92310502]
+     },
+     properties: {
+         title: 'Centreville March',
+         description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/05/NSTJ/716df7dc-0f1d-4712-9c4d-bdef02e6e5d8-IMG_6457_copy.jpg"> <br> <b>Location: Centreville</b> <br> On July 2, Three Rivers Pride and the St. Joseph County Democratic Party organized a rally in Centreville, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.sturgisjournal.com/story/news/2022/07/06/news-roe-v-wade-protest/7810757001/">here</a>!',
+         time: '2022/07',
+ icon: {
+                         iconUrl: 'img/ProRoe.png',
+                         iconSize: [30, 30],
                          iconAnchor: [3, 35],
                          popupAnchor: [0, -41],
                          className: 'dot',
-                             }
-                 }
-             },
-             {
-                                      type: 'Feature',
-                                      geometry: {
-                                          type: 'Point',
-                                          coordinates: [-83.33133257, 42.65741289]
-                                      },
-                                      properties: {
-                                          title: 'Pontiac March',
-                                          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/297208220_183770067439810_2152487243502668584_n.jpg"> <br><b>Location: Oakland County Circuit Courthouse</b> <br>On August 17, Right to Life protesters gathered outside the Oakland County Circuit Courthouse in Pontiac, Michigan, in response to the blocking of the 1931 Michigan abortion ban. Read more <a href="https://www.facebook.com/richeyjo/posts/pfbid02wAFpghe3wc5sCfrtq7X6itzNtz3ftpM3x3x1DPAQrsCjKFYSME6pQ3VqPePMLvS1l">here</a>!',
-                                          time: '2022/08',
-                                          icon: {
-                                                  iconUrl: 'img/ProLife.png',
-                                                  iconSize: [25, 41],
-                                                  iconAnchor: [3, 35],
-                                                  popupAnchor: [0, -41],
-                                                  className: 'dot',
-                                                      }
-                                          }
-                                      },
-                                      {
-                                                             type: 'Feature',
-                                                             geometry: {
-                                                                 type: 'Point',
-                                                                 coordinates: [-83.37430337, 42.40124481]
-                                                             },
-                                                             properties: {
-                                                                 title: 'Livonia March',
-                                                                 description: '<img class="resize center" src="https://www.gannett-cdn.com/-mm-/a25cc4d5877a7de0f911736664113501ea7c37c0/c=0-0-1280-720/local/-/media/2015/08/21/Livonia/B9318543421Z.1_20150821122059_000_G7CBMJVG1.1-0.jpg"> <br><b>Location: Livonia Planned Parenthood</b> <br>On August 22, Protest PP, a coalition of anti-choice groups, held a protest outside the Livonia Planned Parenthood location to raise awareness of abortion and the alleged sale of aborted fetal tissue. Read more <a href="https://www.freep.com/story/news/local/michigan/2015/08/22/livonia-planned-parenthood-national-protest/32190459/">here</a>!',
-                                                                 time: '2022/08',
-                                                                 icon: {
-                                                                         iconUrl: 'img/ProLife.png',
-                                                                         iconSize: [25, 41],
-                                                                         iconAnchor: [3, 35],
-                                                                         popupAnchor: [0, -41],
-                                                                         className: 'dot',
-                                                                             }
-                                                                 }
-                                                             }
-
-];
-
-//September
-var dataset5 = [
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-0.076132, 51.508530]
-  },
-  properties: {
-      title: 'Sir Francis Walsingham (c. 1532 - 6 April 1590)',
-      description: '<img class="resize center" src="https://upload.wikimedia.org/wikipedia/commons/3/38/St_Katharine%27s_%5E_Wapping%2C_London%2C_UK_-_panoramio_%2824%29.jpg"> <br> <b>Location: CITY</b> <br> On date, x people gathered in city, Michigan to support/protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="link">here</a>!',
-      time: '2022/09',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
-              iconAnchor: [3, 35],
-              popupAnchor: [0, -41],
-              className: 'dot',
-                  }
-  }
-},
-];
-
-//October
-var dataset6 = [
-
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-84.97060241, 45.36276564]
-  },
-  properties: {
-      title: 'Petoskey Prayer Chain and Sidewalk Witness',
-      description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/308672376_5512407725516188_3877051987344246703_n.jpg"> <br> <b>Location: Petoskey</b> <br> On October 10, Emmet County Right to Life held a prayer chain and sidewalk witness. Read more <a href="https://fb.me/e/22Vy6rnL9">here</a>!',
-      time: '2022/10',
-      icon: {
-          iconUrl: 'img/ProLife.png',
-          iconSize: [25, 41],
-          iconAnchor: [3, 35],
-          popupAnchor: [0, -41],
-          className: 'dot',
-                  }
-  }
-},
-
-{
-type: 'Feature',
-geometry: {
-    type: 'Point',
-    coordinates: [-86.32397699, 44.24762838]
-},
-properties: {
-    title: 'Manistee March',
-    description: '<img class="resize center" src="https://s.hdnux.com/photos/01/22/13/02/21541005/3/ratio3x2_1200.jpg"> <br><b>Location: Manistee City Hall</b> <br>On October 1, community members led by the Manistee County Democratic Party protested the overturning of the 1973 Roe v. Wade court ruling outside the city hall. Read more <a href="https://www.manisteenews.com/insider/article/Photos-Reproductive-rights-rally-held-at-16506355.php">here</a>!',
-    time: '2022/10',
-    icon: {
-            iconUrl: 'img/ProRoe.png',
-            iconSize: [25, 41],
-            iconAnchor: [3, 35],
-            popupAnchor: [0, -41],
-            className: 'dot',
-                }
-    }
-},
-
-{
-type: 'Feature',
-geometry: {
-    type: 'Point',
-    coordinates: [-83.73821043, 42.27713762]
-},
-properties: {
-    title: 'Ann Arbor March',
-    description: '<img class="resize center" src="https://www.michigandaily.com/wp-content/uploads/2022/11/DUDE20221108.08-1.jpg"> <br><b>Location: University of Michigan Diag</b> <br>On October 3, activists and community members gathered at the University of Michigan Diag for a "Yes on 3" rally in favor of preserving abortion access in Michigan following the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.michigandaily.com/government/normalize-the-conversation-activists-political-leaders-rally-for-reproductive-freedom-for-all-ahead-of-november-elections/">here</a>!',
-    time: '2022/10',
-    icon: {
-            iconUrl: 'img/ProRoe.png',
-            iconSize: [25, 41],
-            iconAnchor: [3, 35],
-            popupAnchor: [0, -41],
-            className: 'dot',
-                }
-    }
-},
-
-    {
-            type: 'Feature',
-            geometry: {
-                type: 'Point',
-                coordinates: [-84.95851732, 45.3754741]
-            },
-            properties: {
-                title: 'Petoskey Demonstration',
-                description: '<img class="resize center" src="https://npr.brightspotcdn.com/dims4/default/017fce4/2147483647/strip/true/crop/1280x853+0+0/resize/1760x1172!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F59%2F84%2Ff995a37244d7a547c899409e6468%2Fimg-6957-large.jpeg"> <br><b>Location: Downtown Petoskey</b> <br>On October 8, about 50 community members held a roadside demonstration protesting the overturning of the 1973 Roe v. Wade court ruling. Read more<a href="https://www.interlochenpublicradio.org/ipr-news/2022-10-10/petoskey-womens-march-sees-modest-attendance-high-spirits">here</a>!',
-                time: '2022/10',
-                icon: {
-                        iconUrl: 'img/ProRoe.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [3, 35],
-                        popupAnchor: [0, -41],
-                        className: 'dot',
-                            }
-                }
-            },
-
-            {
-                            type: 'Feature',
-                            geometry: {
-                                type: 'Point',
-                                coordinates: [-83.97857225, 43.46266507]
-                            },
-                            properties: {
-                                title: 'Saginaw Prayer Rally',
-                                description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/312022076_10161999295292228_1002944557539202414_n.jpg"> <br><b>Location: Saginaw Womens Health Center</b> <br>On October 16, the Christian organization "40 Days for Life" held an anti-choice prayer rally outside the Womens Health Center in Saginaw, Michigan. Read more <a href="https://www.facebook.com/events/439076254961578/">here</a>!',
-                                time: '2022/10',
-                                icon: {
-                                        iconUrl: 'img/ProLife.png',
-                                        iconSize: [25, 41],
-                                        iconAnchor: [3, 35],
-                                        popupAnchor: [0, -41],
-                                        className: 'dot',
-                                            }
-                                }
-                            },
-
-                            {
-                                                        type: 'Feature',
-                                                        geometry: {
-                                                            type: 'Point',
-                                                            coordinates: [-84.24727861, 43.61399162]
-                                                        },
-                                                        properties: {
-                                                            title: 'Midland March',
-                                                            description: '<img class="resize center" src="https://s.hdnux.com/photos/01/27/65/57/23026676/3/ratio3x2_1200.jpg"> <br><b>Location: Midland County Courthouse</b> <br>On October 8, community members held a rally and march protesting the overturning of the 1973 Roe v. Wade court ruling outside the county courthouse in Midland, Michigan. Read more<a href="https://www.manisteenews.com/news/article/March-rally-supports-women-s-rights-our-body-17497744.php">here</a>!',
-                                                            time: '2022/10',
-                                                            icon: {
-                                                                    iconUrl: 'img/ProRoe.png',
-                                                                    iconSize: [25, 41],
-                                                                    iconAnchor: [3, 35],
-                                                                    popupAnchor: [0, -41],
-                                                                    className: 'dot',
-                                                                  }
-                                                                }
-                                                        },
-
-                                                                  {
-                                                                                              type: 'Feature',
-                                                                                              geometry: {
-                                                                                                  type: 'Point',
-                                                                                                  coordinates: [-84.24727861, 43.61399162]
-                                                                                              },
-                                                                                              properties: {
-                                                                                                  title: 'Midland March',
-                                                                                                  description: '<img class="resize center" src="https://s.hdnux.com/photos/01/27/65/57/23026676/3/ratio3x2_1200.jpg"> <br><b>Location: Midland County Courthouse</b> <br>On October 8, community members held a rally and march protesting the overturning of the 1973 Roe v. Wade court ruling outside the county courthouse in Midland, Michigan. Read more<a href="https://www.manisteenews.com/news/article/March-rally-supports-women-s-rights-our-body-17497744.php">here</a>!',
-                                                                                                  time: '2022/10',
-                                                                                                  icon: {
-                                                                                                          iconUrl: 'img/ProRoe.png',
-                                                                                                          iconSize: [25, 41],
-                                                                                                          iconAnchor: [3, 35],
-                                                                                                          popupAnchor: [0, -41],
-                                                                                                          className: 'dot',
-                                                                                                        }
-                                                                                                      }
-                                                                                              },
-
-                                                                                                        {
-                                                                                                                        type: 'Feature',
-                                                                                                                        geometry: {
-                                                                                                                            type: 'Point',
-                                                                                                                            coordinates: [-84.97060241, 45.36276564]
-                                                                                                                        },
-                                                                                                                        properties: {
-                                                                                                                            title: 'Petoskey Prayer Chain and Sidewalk Witness',
-                                                                                                                            description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/308672376_5512407725516188_3877051987344246703_n.jpg"> <br><b>Location: Downtown Petoskey</b> <br>On October 10, Emmet County Right to Life held a prayer chain and sidewalk witness. Read more <a href="https://fb.me/e/22Vy6rnL9">here</a>!',
-                                                                                                                            time: '2022/10',
-                                                                                                                            icon: {
-                                                                                                                                    iconUrl: 'img/ProLife.png',
-                                                                                                                                    iconSize: [25, 41],
-                                                                                                                                    iconAnchor: [3, 35],
-                                                                                                                                    popupAnchor: [0, -41],
-                                                                                                                                    className: 'dot',
-                                                                                                                                        }
-                                                                                                                                      }
-                                                                                                                            },
+                     }
 
 
+     }
+ },
 
-];
+ {
+     type: 'Feature',
+     geometry: {
+         type: 'Point',
+         coordinates: [-84.55321651, 42.73432382]
+     },
+     properties: {
+         title: 'Saline',
+         description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/04/PLSJ/cbf85d18-b274-44da-93f0-1662b83c82ba-20220704_152001156_iOS.jpg"> <br> <b>Location: Lansing</b> <br> On July 4, Lansing community members organized a rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling during the Independence Day Parade. Read more <a href="https://www.lansingstatejournal.com/story/news/local/2022/07/04/celebrations-protests-clash-july-4-lansing/7791867001/">here</a>!',
+         time: '2022/07',
+ icon: {
+                         iconUrl: 'img/ProRoe.png',
+                         iconSize: [30, 30],
+                         iconAnchor: [3, 35],
+                         popupAnchor: [0, -41],
+                         className: 'dot',
+                     }
+     }
+ },
 
-//november
-var dataset7 = [
-{
+  {
       type: 'Feature',
       geometry: {
           type: 'Point',
-          coordinates: [-85.58374686088224, 42.3375482382358]
+          coordinates: [-86.21807394, 43.06101798]
       },
       properties: {
-          title: 'White Coats for Womens Rights',
-          description: '<img class="resize center" src="https://www.mlive.com/resizer/AjbGgIF9v7TdXxecjyZg7V4a7EQ=/1280x0/smart/advancelocal-adapter-image-uploads.s3.amazonaws.com/image.mlive.com/home/mlive-media/width2048/img/kzgazette_impact/photo/wmu-med-school-inaugural-class-of-2018-white-coat-ceremony-59-3721a37221890e3f.jpg"> <br><b>Location: Bronson Park</b><br> On November 6, Western Michigan University medical students held a "White Coats for Womens Rights" rally at Bronson Park in Kalamazoo, Michigan, to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.publicmedianet.org/demand#!/widget/9/episode/219764">here</a>!',
-          time: '2022/11',
-          icon: {
+          title: 'Grand Haven March',
+          description: '<img class="resize center" src="https://bloximages.newyork1.vip.townnews.com/grandhaventribune.com/content/tncms/assets/v3/editorial/d/67/d67c21e0-985b-518d-b8f0-4dbaf9415fc9/62bf5c575e219.image.jpg"> <br> <b>Location: Grand Haven</b> <br> On July 1, about 40 community members gathered in Grand Haven, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.grandhaventribune.com/news/local/protestors-react-to-supreme-court-decision-with-grand-haven-march/article_c62ae702-0624-5d17-bab9-2f0332bec8de.html">here</a>!',
+          time: '2022/07',
+        icon: {
                   iconUrl: 'img/ProRoe.png',
-                  iconSize: [25, 41],
+                  iconSize: [30, 30],
                   iconAnchor: [3, 35],
                   popupAnchor: [0, -41],
                   className: 'dot',
@@ -1303,93 +792,655 @@ var dataset7 = [
       type: 'Feature',
       geometry: {
           type: 'Point',
-          coordinates: [-84.03584346, 43.43915257]
+          coordinates: [-85.52746686, 41.92310502]
       },
       properties: {
-          title: 'Fight Like Heaven Rally',
-          description: '<img class="resize center" src="https://www.saginaw.org/system/files/styles/bp_featured_image/private/2022-10/rally-image-eventbrite1.jpg"> <br><b>Location: Saginaw</b><br> On November 6, The Catholic Diocese of Saginaw held an anti-choice "Fight Like Heaven" prayer rally to "pray to defeat Proposal 3," which would defend abortion access in Michigan. Read more <a href="https://www.publicmedianet.org/demand#!/widget/9/episode/219764">here</a>!',
-          time: '2022/11',
-          icon: {
-                  iconUrl: 'img/ProLife.png',
-                  iconSize: [25, 41],
+          title: 'Centreville March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/05/NSTJ/716df7dc-0f1d-4712-9c4d-bdef02e6e5d8-IMG_6457_copy.jpg"> <br> <b>Location: Centreville</b> <br> On July 2, Three Rivers Pride and the St. Joseph County Democratic Party organized a rally in Centreville, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.sturgisjournal.com/story/news/2022/07/06/news-roe-v-wade-protest/7810757001/">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+
+
+      }
+  },
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.55321651, 42.73432382]
+      },
+      properties: {
+          title: 'Saline',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/04/PLSJ/cbf85d18-b274-44da-93f0-1662b83c82ba-20220704_152001156_iOS.jpg"> <br> <b>Location: Lansing</b> <br> On July 4, Lansing community members organized a rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling during the Independence Day Parade. Read more <a href="https://www.lansingstatejournal.com/story/news/local/2022/07/04/celebrations-protests-clash-july-4-lansing/7791867001/">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
                   iconAnchor: [3, 35],
                   popupAnchor: [0, -41],
                   className: 'dot',
                       }
       }
   },
-{
-  type: 'Feature',
-  geometry: {
-      type: 'Point',
-      coordinates: [-0.076132, 51.508530]
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.23976715, 42.77675836]
+      },
+      properties: {
+          title: 'Lansing March',
+          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/289357148_2495151860621710_6136594774970141051_n.jpg"> <br> <b>Location: Lansing</b> <br> On July 4, Lansing Pro-Choice organized a rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.pharostribune.com/news/article_46fa2730-fa56-11ec-90d4-97739f9112f4.html">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
   },
-  properties: {
-      title: 'Sir Francis Walsingham (c. 1532 - 6 April 1590)',
-      description: '<img class="resize center" src="https://upload.wikimedia.org/wikipedia/commons/3/38/St_Katharine%27s_%5E_Wapping%2C_London%2C_UK_-_panoramio_%2824%29.jpg"> <br> <b>Location: CITY</b> <br> On date, x people gathered in city, Michigan to support/protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="link">here</a>!',
-      time: '2022/11',
-    icon: {
-              iconUrl: 'img/ProRoe.png',
-              iconSize: [25, 41],
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.78148527, 42.1685236]
+      },
+      properties: {
+          title: 'Saline March',
+          description: '<img class="resize center" src="https://thesalinepost.com/sites/default/files/styles/extra_large/public/277/2022-07/protest_6.jpg"> <br> <b>Location: Saline</b> <br> On July 5, Saline residents organized a rally in Saline, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://thesalinepost.com/g/saline-mi/n/110196/citizens-plan-another-abortion-rights-rally-saline-saturday-6-pm">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-88.56955982, 47.12114813]
+      },
+      properties: {
+          title: 'Houghton March',
+          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/290605885_158988973342393_5900770303442909199_n.jpg"> <br> <b>Location: Houghton</b> <br> On July 7, Houghton residents organized a "Bans of Our Bodies" rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://facebook.com/events/769188311113925/?ref=newsfeed">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.5553193, 42.73360374]
+      },
+      properties: {
+          title: 'Lansing March',
+          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/241434312_238502511410800_7337888945291820085_n.jpg"> <br> <b>Location: Lansing</b> <br> On July 9, led by Planned Parenthood, residents organized a "Bans of Our Bodies" rally in Lansing, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/LansingProChoice">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.78148527, 42.1685236]
+      },
+      properties: {
+          title: 'Saline March',
+          description: '<img class="resize center" src="https://thesalinepost.com/sites/default/files/styles/extra_large/public/277/2022-07/protest_6.jpg?itok=JW5MPSFL"> <br> <b>Location: Saline</b> <br> On July 9, residents organized a second "Bans of Our Bodies" rally in Saline, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://thesalinepost.com/g/saline-mi/n/110196/citizens-plan-another-abortion-rights-rally-saline-saturday-6-pm">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.68834192, 43.0118237]
+      },
+      properties: {
+          title: 'Flint March',
+          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/291788314_115764924513997_6128801527649387259_n.jpg"> <br> <b>Location: Flint</b> <br> On July 10, residents organized a rally in Flint, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/452597626319563/?ref=newsfeed">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.36280987, 42.41364032]
+      },
+      properties: {
+          title: 'Livonia March',
+          description: '<img class="resize center" src="https://www.gannett-cdn.com/presto/2022/07/23/POEN/9074572d-cc3c-4df7-a44d-c235ac0d4d29-LIVProtest6.JPG"> <br> <b>Location: Livonia</b> <br> On July 23, led by Livonia Womens Rights, residents organized a rally in Livonia, Michigan to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.hometownlife.com/story/news/local/livonia/2022/07/23/abortion-rights-march-livonia-draws-hundreds-supporters/10135356002/">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.7390498, 42.27926773]
+      },
+      properties: {
+          title: 'Ann Arbor March',
+          description: '<img class="resize center" src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-07/220725-uofm-walkout-sj-1238p-8ca30e.jpg"> <br> <b>Location: Ann Arbor</b> <br> On July 24, University of Michigan medical students walked out of their whitecoat ceremony to protest an anti-abortion keynote speaker, following the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.cnn.com/2022/07/26/us/medical-student-abortion-protest-university-of-michigan">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.38413875, 42.32521391]
+      },
+      properties: {
+          title: 'Westland March',
+          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/294317198_423861223006640_7251611621875994290_n.jpg"> <br> <b>Location: Westland</b> <br> On July 24, community members led by Michigan Pro-Choice with Heart led a rally protesting the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/496773995585270/?ref=newsfeed">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+
+];
+
+//August
+var dataset4 = [
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-83.38413875, 42.32521391]
+      },
+      properties: {
+          title: 'Westland March',
+          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/294317198_423861223006640_7251611621875994290_n.jpg"> <br><b>Location: Westland</b> <br>On July 24, community members led by Michigan Pro-Choice with Heart led a rally protesting the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/496773995585270/?ref=newsfeed">here</a>!',
+          time: '2022/07',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+        type: 'Point',
+        coordinates: [-83.29326935, 42.64016014]
+    },
+    properties: {
+        title: 'Pontiac March',
+        description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/293601170_422651026460993_453396420367664039_n.jpg"> <br><b>Location: Liberty Bar</b> <br>On August 22, Pontiac, Michigan, community members led by Michigan Pro-Choice with Heart led a "Rally, Get Out & Vote @ Liberty Bar" then marched to the county courthouse to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/events/572416621265081/?ref=newsfeed">here</a>!',
+        time: '2022/08',
+        icon: {
+                iconUrl: 'img/ProRoe.png',
+                iconSize: [30, 30],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                    }
+        }
+    },
+
+    {
+                 type: 'Feature',
+                 geometry: {
+                     type: 'Point',
+                     coordinates: [-84.48718202, 45.63403203]
+                 },
+                 properties: {
+                     title: 'Cheboygan March',
+                     description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/287071251_5572724939427746_1914381179394633413_n.jpg"> <br><b>Location: Cheboygan Trailhead</b> <br>On August 6, community members in Cheboygan, Michigan, organized a "Bike Rally 4 Life" in favor of the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://fb.me/e/25cQxFsnf">here</a>!',
+                     time: '2022/08',
+                     icon: {
+                             iconUrl: 'img/ProLife.png',
+                             iconSize: [30, 30],
+                             iconAnchor: [3, 35],
+                             popupAnchor: [0, -41],
+                             className: 'dot',
+                                 }
+                     }
+                 },
+                 {
+                                          type: 'Feature',
+                                          geometry: {
+                                              type: 'Point',
+                                              coordinates: [-83.33133257, 42.65741289]
+                                          },
+                                          properties: {
+                                              title: 'Pontiac March',
+                                              description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/297208220_183770067439810_2152487243502668584_n.jpg"> <br><b>Location: Oakland County Circuit Courthouse</b> <br>On August 17, Right to Life protesters gathered outside the Oakland County Circuit Courthouse in Pontiac, Michigan, in response to the blocking of the 1931 Michigan abortion ban. Read more <a href="https://www.facebook.com/richeyjo/posts/pfbid02wAFpghe3wc5sCfrtq7X6itzNtz3ftpM3x3x1DPAQrsCjKFYSME6pQ3VqPePMLvS1l">here</a>!',
+                                              time: '2022/08',
+                                              icon: {
+                                                      iconUrl: 'img/ProLife.png',
+                                                      iconSize: [30, 30],
+                                                      iconAnchor: [3, 35],
+                                                      popupAnchor: [0, -41],
+                                                      className: 'dot',
+                                                          }
+                                              }
+                                          },
+                                          {
+                                                                 type: 'Feature',
+                                                                 geometry: {
+                                                                     type: 'Point',
+                                                                     coordinates: [-83.37430337, 42.40124481]
+                                                                 },
+                                                                 properties: {
+                                                                     title: 'Livonia March',
+                                                                     description: '<img class="resize center" src="https://www.gannett-cdn.com/-mm-/a25cc4d5877a7de0f911736664113501ea7c37c0/c=0-0-1280-720/local/-/media/2015/08/21/Livonia/B9318543421Z.1_20150821122059_000_G7CBMJVG1.1-0.jpg"> <br><b>Location: Livonia Planned Parenthood</b> <br>On August 22, Protest PP, a coalition of anti-choice groups, held a protest outside the Livonia Planned Parenthood location to raise awareness of abortion and the alleged sale of aborted fetal tissue. Read more <a href="https://www.freep.com/story/news/local/michigan/2015/08/22/livonia-planned-parenthood-national-protest/32190459/">here</a>!',
+                                                                     time: '2022/08',
+                                                                     icon: {
+                                                                             iconUrl: 'img/ProLife.png',
+                                                                             iconSize: [30, 30],
+                                                                             iconAnchor: [3, 35],
+                                                                             popupAnchor: [0, -41],
+                                                                             className: 'dot',
+                                                                                 }
+                                                                     }
+                                                                 }
+
+];
+
+//September
+var dataset5 = [
+     {
+    type: 'Feature',
+    geometry: {
+        type: 'Point',
+        coordinates: [-84.55698227, 42.73362738]
+    },
+    properties: {
+        title: 'Lansing March',
+        description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/307993308_2171964216318810_4795025711596689077_n.png"> <br> <b>Location: Lansing</b> <br> On September 21, community members led by Equality Michigan, Inclusive Justice Michigan, Stand with Trans, Voters not Politicians, Jews for a Secular Democracy, and several other community groups staged a "Protecting Democracy: Rally for Full Equality" in front of the state capitol building protesting the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.facebook.com/detroitjewsforjustice/posts/pfbid021U2C4fFtPyVF9ijrSdThAcqZLZ8i6ERHUK77dk2Y2i6aDRjWd4eYbGYPkRtfgLkol">here</a>!',
+        time: '2022/09',
+        icon: {
+                iconUrl: 'img/ProRoe.png',
+                iconSize: [30, 30],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                    }
+        }
+    }
+
+];
+
+//October
+var dataset6 = [
+
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-84.97060241, 45.36276564]
+      },
+      properties: {
+          title: 'Petoskey Prayer Chain and Sidewalk Witness',
+          description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/308672376_5512407725516188_3877051987344246703_n.jpg"> <br> <b>Location: Petoskey</b> <br> On October 10, Emmet County Right to Life held a prayer chain and sidewalk witness. Read more <a href="https://fb.me/e/22Vy6rnL9">here</a>!',
+          time: '2022/10',
+          icon: {
+              iconUrl: 'img/ProLife.png',
+              iconSize: [30, 30],
               iconAnchor: [3, 35],
               popupAnchor: [0, -41],
               className: 'dot',
-                  }
-  }
-},
+                      }
+      }
+  },
+
+  {
+    type: 'Feature',
+    geometry: {
+        type: 'Point',
+        coordinates: [-86.32397699, 44.24762838]
+    },
+    properties: {
+        title: 'Manistee March',
+        description: '<img class="resize center" src="https://s.hdnux.com/photos/01/22/13/02/21541005/3/ratio3x2_1200.jpg"> <br><b>Location: Manistee City Hall</b> <br>On October 1, community members led by the Manistee County Democratic Party protested the overturning of the 1973 Roe v. Wade court ruling outside the city hall. Read more <a href="https://www.manisteenews.com/insider/article/Photos-Reproductive-rights-rally-held-at-16506355.php">here</a>!',
+        time: '2022/10',
+        icon: {
+                iconUrl: 'img/ProRoe.png',
+                iconSize: [30, 30],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                    }
+        }
+    },
+
+    {
+    type: 'Feature',
+    geometry: {
+        type: 'Point',
+        coordinates: [-83.73821043, 42.27713762]
+    },
+    properties: {
+        title: 'Ann Arbor March',
+        description: '<img class="resize center" src="https://www.michigandaily.com/wp-content/uploads/2022/11/DUDE20221108.08-1.jpg"> <br><b>Location: University of Michigan Diag</b> <br>On October 3, activists and community members gathered at the University of Michigan Diag for a "Yes on 3" rally in favor of preserving abortion access in Michigan following the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.michigandaily.com/government/normalize-the-conversation-activists-political-leaders-rally-for-reproductive-freedom-for-all-ahead-of-november-elections/">here</a>!',
+        time: '2022/10',
+        icon: {
+                iconUrl: 'img/ProRoe.png',
+                iconSize: [30, 30],
+                iconAnchor: [3, 35],
+                popupAnchor: [0, -41],
+                className: 'dot',
+                    }
+        }
+    },
+
+        {
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [-84.95851732, 45.3754741]
+                },
+                properties: {
+                    title: 'Petoskey Demonstration',
+                    description: '<img class="resize center" src="https://npr.brightspotcdn.com/dims4/default/017fce4/2147483647/strip/true/crop/1280x853+0+0/resize/1760x1172!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F59%2F84%2Ff995a37244d7a547c899409e6468%2Fimg-6957-large.jpeg"> <br><b>Location: Downtown Petoskey</b> <br>On October 8, about 50 community members held a roadside demonstration protesting the overturning of the 1973 Roe v. Wade court ruling. Read more<a href="https://www.interlochenpublicradio.org/ipr-news/2022-10-10/petoskey-womens-march-sees-modest-attendance-high-spirits">here</a>!',
+                    time: '2022/10',
+                    icon: {
+                            iconUrl: 'img/ProRoe.png',
+                            iconSize: [30, 30],
+                            iconAnchor: [3, 35],
+                            popupAnchor: [0, -41],
+                            className: 'dot',
+                                }
+                    }
+                },
+
+                {
+                                type: 'Feature',
+                                geometry: {
+                                    type: 'Point',
+                                    coordinates: [-83.97857225, 43.46266507]
+                                },
+                                properties: {
+                                    title: 'Saginaw Prayer Rally',
+                                    description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/312022076_10161999295292228_1002944557539202414_n.jpg"> <br><b>Location: Saginaw Womens Health Center</b> <br>On October 16, the Christian organization "40 Days for Life" held an anti-choice prayer rally outside the Womens Health Center in Saginaw, Michigan. Read more <a href="https://www.facebook.com/events/439076254961578/">here</a>!',
+                                    time: '2022/10',
+                                    icon: {
+                                            iconUrl: 'img/ProLife.png',
+                                            iconSize: [30, 30],
+                                            iconAnchor: [3, 35],
+                                            popupAnchor: [0, -41],
+                                            className: 'dot',
+                                                }
+                                    }
+                                },
+
+                                {
+                                                            type: 'Feature',
+                                                            geometry: {
+                                                                type: 'Point',
+                                                                coordinates: [-84.24727861, 43.61399162]
+                                                            },
+                                                            properties: {
+                                                                title: 'Midland March',
+                                                                description: '<img class="resize center" src="https://s.hdnux.com/photos/01/27/65/57/23026676/3/ratio3x2_1200.jpg"> <br><b>Location: Midland County Courthouse</b> <br>On October 8, community members held a rally and march protesting the overturning of the 1973 Roe v. Wade court ruling outside the county courthouse in Midland, Michigan. Read more<a href="https://www.manisteenews.com/news/article/March-rally-supports-women-s-rights-our-body-17497744.php">here</a>!',
+                                                                time: '2022/10',
+                                                                icon: {
+                                                                        iconUrl: 'img/ProRoe.png',
+                                                                        iconSize: [30, 30],
+                                                                        iconAnchor: [3, 35],
+                                                                        popupAnchor: [0, -41],
+                                                                        className: 'dot',
+                                                                      }
+                                                                    }
+                                                            },
+
+                                                                      {
+                                                                                                  type: 'Feature',
+                                                                                                  geometry: {
+                                                                                                      type: 'Point',
+                                                                                                      coordinates: [-84.24727861, 43.61399162]
+                                                                                                  },
+                                                                                                  properties: {
+                                                                                                      title: 'Midland March',
+                                                                                                      description: '<img class="resize center" src="https://s.hdnux.com/photos/01/27/65/57/23026676/3/ratio3x2_1200.jpg"> <br><b>Location: Midland County Courthouse</b> <br>On October 8, community members held a rally and march protesting the overturning of the 1973 Roe v. Wade court ruling outside the county courthouse in Midland, Michigan. Read more<a href="https://www.manisteenews.com/news/article/March-rally-supports-women-s-rights-our-body-17497744.php">here</a>!',
+                                                                                                      time: '2022/10',
+                                                                                                      icon: {
+                                                                                                              iconUrl: 'img/ProRoe.png',
+                                                                                                              iconSize: [30, 30],
+                                                                                                              iconAnchor: [3, 35],
+                                                                                                              popupAnchor: [0, -41],
+                                                                                                              className: 'dot',
+                                                                                                            }
+                                                                                                          }
+                                                                                                  },
+
+                                                                                                            {
+                                                                                                                            type: 'Feature',
+                                                                                                                            geometry: {
+                                                                                                                                type: 'Point',
+                                                                                                                                coordinates: [-84.97060241, 45.36276564]
+                                                                                                                            },
+                                                                                                                            properties: {
+                                                                                                                                title: 'Petoskey Prayer Chain and Sidewalk Witness',
+                                                                                                                                description: '<img class="resize center" src="https://scontent-ord5-2.xx.fbcdn.net/v/t39.30808-6/308672376_5512407725516188_3877051987344246703_n.jpg"> <br><b>Location: Downtown Petoskey</b> <br>On October 10, Emmet County Right to Life held a prayer chain and sidewalk witness. Read more <a href="https://fb.me/e/22Vy6rnL9">here</a>!',
+                                                                                                                                time: '2022/10',
+                                                                                                                                icon: {
+                                                                                                                                        iconUrl: 'img/ProLife.png',
+                                                                                                                                        iconSize: [30, 30],
+                                                                                                                                        iconAnchor: [3, 35],
+                                                                                                                                        popupAnchor: [0, -41],
+                                                                                                                                        className: 'dot',
+                                                                                                                                            }
+                                                                                                                                          }
+                                                                                                                                },
+
+
+
+];
+
+//november
+var dataset7 = [
+  {
+          type: 'Feature',
+          geometry: {
+              type: 'Point',
+              coordinates: [-85.58374686088224, 42.3375482382358]
+          },
+          properties: {
+              title: 'White Coats for Womens Rights',
+              description: '<img class="resize center" src="https://www.mlive.com/resizer/AjbGgIF9v7TdXxecjyZg7V4a7EQ=/1280x0/smart/advancelocal-adapter-image-uploads.s3.amazonaws.com/image.mlive.com/home/mlive-media/width2048/img/kzgazette_impact/photo/wmu-med-school-inaugural-class-of-2018-white-coat-ceremony-59-3721a37221890e3f.jpg"> <br><b>Location: Bronson Park</b><br> On November 6, Western Michigan University medical students held a "White Coats for Womens Rights" rally at Bronson Park in Kalamazoo, Michigan, to protest the overturning of the 1973 Roe v. Wade court ruling. Read more <a href="https://www.publicmedianet.org/demand#!/widget/9/episode/219764">here</a>!',
+              time: '2022/11',
+  	        icon: {
+                      iconUrl: 'img/ProRoe.png',
+                      iconSize: [30, 30],
+                      iconAnchor: [3, 35],
+                      popupAnchor: [0, -41],
+                      className: 'dot',
+                          }
+          }
+      },
+
+      {
+          type: 'Feature',
+          geometry: {
+              type: 'Point',
+              coordinates: [-84.03584346, 43.43915257]
+          },
+          properties: {
+              title: 'Fight Like Heaven Rally',
+              description: '<img class="resize center" src="https://www.saginaw.org/system/files/styles/bp_featured_image/private/2022-10/rally-image-eventbrite1.jpg"> <br><b>Location: Saginaw</b><br> On November 6, The Catholic Diocese of Saginaw held an anti-choice "Fight Like Heaven" prayer rally to "pray to defeat Proposal 3," which would defend abortion access in Michigan. Read more <a href="https://www.publicmedianet.org/demand#!/widget/9/episode/219764">here</a>!',
+              time: '2022/11',
+  	        icon: {
+                      iconUrl: 'img/ProLife.png',
+                      iconSize: [30, 30],
+                      iconAnchor: [3, 35],
+                      popupAnchor: [0, -41],
+                      className: 'dot',
+                          }
+          }
+      },
+  {
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [-0.076132, 51.508530]
+      },
+      properties: {
+          title: 'Sir Francis Walsingham (c. 1532 - 6 April 1590)',
+          description: '<img class="resize center" src="https://upload.wikimedia.org/wikipedia/commons/3/38/St_Katharine%27s_%5E_Wapping%2C_London%2C_UK_-_panoramio_%2824%29.jpg"> <br> <b>Location: CITY</b> <br> On date, x people gathered in city, Michigan to support/protest the overturn of the 1973 Roe v. Wade court ruling. Read more <a href="link">here</a>!',
+          time: '2022/11',
+        icon: {
+                  iconUrl: 'img/ProRoe.png',
+                  iconSize: [30, 30],
+                  iconAnchor: [3, 35],
+                  popupAnchor: [0, -41],
+                  className: 'dot',
+                      }
+      }
+  },
 ];
 
 //INCONGRUITIES w. Acme example
-        var optionsObject = {
-            onEachFeature: onEachFeature
-        };
-        function onEachFeature (feature, layer) {
-           var content = "<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 200px;' src=" + feature.properties.image + " /></div><div><h4>" + feature.properties.title + "</h4><p>" + feature.properties.time + "</p><p>" + feature.properties.description + "</p></div>";
-           layer.setIcon(L.icon(feature.properties.icon));
-            layer.bindPopup(content, {closeButton: true});
-        };
-        // Create geoJSON layers
-                 var group1 = L.geoJSON(dataset1, optionsObject);
-                 var group2 = L.geoJSON(dataset2, optionsObject);
-                 var group3 = L.geoJSON(dataset3, optionsObject);
-                 var group4 = L.geoJSON(dataset4, optionsObject);
-                 var group5 = L.geoJSON(dataset5, optionsObject);
-                 var group6 = L.geoJSON(dataset6, optionsObject);
-                 var group7 = L.geoJSON(dataset7, optionsObject);
+            var optionsObject = {
+                onEachFeature: onEachFeature
+            };
+            function onEachFeature (feature, layer) {
+               var content = "<div style='clear: both'></div><div style='float: left; padding: 5px; margin-right: 10px'><img style='width: 200px;' src=" + feature.properties.image + " /></div><div><h4>" + feature.properties.title + "</h4><p>" + feature.properties.time + "</p><p>" + feature.properties.description + "</p></div>";
+               layer.setIcon(L.icon(feature.properties.icon));
+                layer.bindPopup(content, {closeButton: true});
+            };
+            // Create geoJSON layers
+			         var group1 = L.geoJSON(dataset1, optionsObject);
+			         var group2 = L.geoJSON(dataset2, optionsObject);
+			         var group3 = L.geoJSON(dataset3, optionsObject);
+			         var group4 = L.geoJSON(dataset4, optionsObject);
+			         var group5 = L.geoJSON(dataset5, optionsObject);
+			         var group6 = L.geoJSON(dataset6, optionsObject);
+			         var group7 = L.geoJSON(dataset7, optionsObject);
 
-        // Set the time attribute for each group
-                    group1.options.time = "2022/05";
-                    group2.options.time = "2022/06";
-                    group3.options.time = "2022/07";
-                    group4.options.time = "2022/08";
-                    group5.options.time = "2022/09";
-                    group6.options.time = "2022/10";
-                    group7.options.time = "2022/11";
+            // Set the time attribute for each group
+            			group1.options.time = "2022/05";
+                  group2.options.time = "2022/06";
+            			group3.options.time = "2022/07";
+            			group4.options.time = "2022/08";
+            			group5.options.time = "2022/09";
+            			group6.options.time = "2022/10";
+            			group7.options.time = "2022/11";
 
-        // Create the layerGroup
-                    var multiLayers = L.layerGroup([group1, group2, group3, group4, group5, group6, group7]);
+            // Create the layerGroup
+                        var multiLayers = L.layerGroup([group1, group2, group3, group4, group5, group6, group7]);
 
-        // Set the sliderControl options
-        var sliderControl1 = L.control.sliderControl( {
-          layer: multiLayers, // REQUIRED
-          alwaysShowDate: true, // to make the date box below the slider persistent
-          showAllPopups: false, // to show all popups, instead of only one; same as the popup option "autoClose: false"
-          showPopups: false // to set it so, when a marker is generated by the slider, its popup doesn't automatically display
+            // Set the sliderControl options
+            var sliderControl1 = L.control.sliderControl( {
+              layer: multiLayers, // REQUIRED
+              alwaysShowDate: true, // to make the date box below the slider persistent
+              showAllPopups: false, // to show all popups, instead of only one; same as the popup option "autoClose: false"
+              showPopups: false // to set it so, when a marker is generated by the slider, its popup doesn't automatically display
 });
 
-// Add the slider to the map
+    // Add the slider to the map
 map1.addControl(sliderControl1);
 
 // Initialize the slider
 sliderControl1.startSlider();
 
 var sidebar = L.control.sidebar({ container: 'sidebar' })
-        .addTo(map1)
-        .open('home');
-</script>
-</div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/Auto-Modal-Popup.js"></script>
-</body>
+            .addTo(map1)
+            .open('home');
 
+ // add panels dynamically to the sidebar
+        sidebar
+            .addPanel({
+                id:   'js-api',
+                tab:  '<i class="fa fa-users"></i>',
+                title: 'JS API',
+                pane: '<p>The Javascript API allows to dynamically create or modify the panel state.<p/><p><button onclick="sidebar.enablePanel(\'mail\')">enable mails panel</button><button onclick="sidebar.disablePanel(\'mail\')">disable mails panel</button></p><p><button onclick="addUser()">add user</button></b>',
+            })
+
+
+	var userid = 0
+        function addUser() {
+            sidebar.addPanel({
+                id:   'user' + userid++,
+                tab:  '<i class="fa fa-user"></i>',
+                title: 'User Profile ' + userid,
+                pane: '<p>user ipsum dolor sit amet</p>',
+            });
+        }
+
+var zoom_bar = new L.Control.ZoomBar({position: 'topright'}).addTo(map1);
+
+
+
+	   </script>
+
+
+
+	</body>
 </html>
