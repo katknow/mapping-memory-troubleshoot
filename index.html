@@ -85,10 +85,13 @@ body {
     <script>
         var map1 = L.map ('myMap', {
             minZoom: 7.5,
-                    maxZoom: 18,
-        zoomControl: false}).setView([43.59743364839015, -84.75832298140293], 7.5);
+            maxZoom: 18,
+            zoomControl: false}).setView([43.59743364839015, -84.75832298140293], 7.5);
 
-         // zoom control options
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/jacob-cara-e/clacpjey6001d15plh9fpo29x/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamFjb2ItY2FyYS1lIiwiYSI6ImNsYWNvdG1ybzBjaTgzcHBlczU3aTI1MHQifQ.H9XbnFnyjJeYBfQxiDL4-Q', {
+           
+        // zoom control options
          var zoomOptions = {
             zoomInText: '+',
             zoomOutText: '-',
@@ -96,8 +99,7 @@ body {
 
          var zoom = L.control.zoom(zoomOptions);   // Creating zoom control
          zoom.addTo(map1);   // Adding zoom control to the map
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/jacob-cara-e/clacpjey6001d15plh9fpo29x/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamFjb2ItY2FyYS1lIiwiYSI6ImNsYWNvdG1ybzBjaTgzcHBlczU3aTI1MHQifQ.H9XbnFnyjJeYBfQxiDL4-Q', {
+           
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
        }).addTo(map1);
             map1.attributionControl.addAttribution('CHI Fellows 2022-2023, <a href="https://chi.anthropology.msu.edu/", class="your_class">CHI MSU 2022</a>');
