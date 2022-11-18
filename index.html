@@ -88,6 +88,14 @@ body {
                     maxZoom: 18,
         zoomControl: false}).setView([43.59743364839015, -84.75832298140293], 7.5);
 
+         // zoom control options
+         var zoomOptions = {
+            zoomInText: '+',
+            zoomOutText: '-',
+         };
+         var zoom = L.control.zoom(zoomOptions);   // Creating zoom control
+         zoom.addTo(map);   // Adding zoom control to the map
+
         L.tileLayer('https://api.mapbox.com/styles/v1/jacob-cara-e/clacpjey6001d15plh9fpo29x/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiamFjb2ItY2FyYS1lIiwiYSI6ImNsYWNvdG1ybzBjaTgzcHBlczU3aTI1MHQifQ.H9XbnFnyjJeYBfQxiDL4-Q', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
        }).addTo(map1);
@@ -1348,7 +1356,7 @@ var dataset7 = [
 
         // Set the time attribute for each group
                     group1.options.time = "2022/05";
-              group2.options.time = "2022/06";
+                    group2.options.time = "2022/06";
                     group3.options.time = "2022/07";
                     group4.options.time = "2022/08";
                     group5.options.time = "2022/09";
